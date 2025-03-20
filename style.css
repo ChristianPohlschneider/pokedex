@@ -1,0 +1,176 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Raleway', sans-serif;
+}
+
+.maxWidth {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.mainDiv {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* header */
+
+header {
+    height: 100px;
+    width: 100%;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+  }
+
+.navContent {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navLinks {
+    display: flex;
+    height: 100%;
+    gap: 24px;
+    align-items: flex-end;
+    padding-bottom: 8px;
+  }
+  
+  .linkStyle {
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    color: rgb(64, 59, 59);
+  }
+  
+  .aktiveLink {
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  
+  .linkStyle:hover,
+  .aktiveLink {
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 8px;
+    color: #008000;
+  }
+
+/* Footer */
+
+footer {
+    margin-top: auto;
+    height: 150px;
+    background-color: rgb(64, 59, 59);
+}
+
+.footerContent {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footerLinks {
+    display: flex;
+    gap: 16px;
+    color: white;
+}
+
+.footerLinks a {
+    color: white;
+    text-decoration: none;
+}
+
+.footerLinks a:hover {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.footerIcons {
+    display: flex;
+    gap: 32px;
+}
+
+.footerIcons img {
+    width: auto;
+    height: 40px;
+}
+
+.footerIcons img:hover {
+    filter: drop-shadow(0px 0px 2px white);
+}
+
+/* Responsive Menu */
+
+.respMenuClosed {
+    transform: translateX(100%);
+}
+
+.burgerDesktop {
+    display: none;
+}
+
+.respMenuBox {
+    display: none;
+}
+
+@media (max-width: 1500px) {
+    .resp {
+        padding-left: 64px;
+        padding-right: 64px;
+    }
+}
+
+@media (max-width: 950px) {
+    .respMenuBox {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100px;
+        right: 0;
+        background-color: white;
+        border-left: 1px solid rgba(0, 0, 0, 0.2);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        width: 200px;
+        height: 250px;
+        transition: all 250ms ease-in-out;
+    }
+
+    .burgerMobile {
+        display: flex;
+        height: 48px;
+        width: auto;
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    .burgerMobile:hover {
+        filter: drop-shadow(0px 0px 1px rgb(0, 169, 0));
+        cursor: pointer;
+    }
+
+    .linksDesktop {
+        display: none;
+    }
+
+    .linkStyle {
+        padding-bottom: 16px;
+        padding-left: 8px;
+    }
+
+    .linkStyle:first-child {
+        padding-top: 16px;
+    }
+
+    nav {
+        padding: 16px;
+    }
+}
