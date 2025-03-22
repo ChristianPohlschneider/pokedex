@@ -1,21 +1,22 @@
 let INIT_PATH = "pokemon?limit=20&offset=0";
 let initArray = [];
 
-async function init() {
-    let response = await loadData(INIT_PATH);
-    let keyArray = Object.keys(response);
-
-    for (let index = 0; index < response.length; index++) {
-
-        initArray.push(
-            {
-                id: keyArray[index],
-                name: response[index].name,
-                url: response[index].url
+function getPromise() {
+    loadFromAPI()
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (initArray.length == 0) {
+                reject(console.error("Daten konnten nicht abgerufen werden"));
+            } else {
+                resolve(console.log("Daten konnten abgerufen werden"))
             }
-        )
-        document.getElementById("content").innerHTML += await renderPokeCard(initArray, index);
-    }
+        }, 300);
+    });
+}
+
+function renderPokeCards(initArray, index, data){
+    document.getElementById("content").innerHTML += renderPokeCard(initArray, index);
+    document.getElementById("contentImg" + index).src = data.sprites.other["official-artwork"].front_default;
 }
 
 function toggleMenu(id) {

@@ -24,7 +24,7 @@ header {
     height: 100px;
     width: 100%;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
-  }
+}
 
 .navContent {
     display: flex;
@@ -39,28 +39,44 @@ header {
     gap: 24px;
     align-items: flex-end;
     padding-bottom: 8px;
-  }
-  
-  .linkStyle {
+}
+
+.linkStyle {
     text-decoration: none;
     font-size: 20px;
     font-weight: 600;
     color: rgb(64, 59, 59);
-  }
-  
-  .aktiveLink {
+}
+
+.aktiveLink {
     text-decoration: none;
     font-size: 20px;
     font-weight: 600;
-  }
-  
-  .linkStyle:hover,
-  .aktiveLink {
+}
+
+.linkStyle:hover,
+.aktiveLink {
     text-decoration: underline;
     text-decoration-thickness: 3px;
     text-underline-offset: 8px;
     color: #008000;
-  }
+}
+
+/* content */
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.pokeCard {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
 
 /* Footer */
 
