@@ -6,13 +6,14 @@ async function loadFromAPI() {
     for (let index = 0; index < response.length; index++) {
         initArray.push(
             {
-                id: keyArray[index],
+                id: 0,
                 name: response[index].name,
                 url: response[index].url
             }
         )
         let data = await getAttributes(initArray, index);
-        renderPokeCards(initArray, index, data)
+        initArray[index].id = data.id - 1;
+        renderPokeCards(initArray, index, data);
     }
 }
 
@@ -20,7 +21,6 @@ async function getAttributes(initArray, index) {
     let data = await loadAttributesData(initArray[index].url);
     return data;
 }
-
 
 async function loadData(path = "") {
     try {

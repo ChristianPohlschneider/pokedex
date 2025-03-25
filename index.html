@@ -5,10 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokedex</title>
-
+    <link rel="shortcut icon" href="./assets/icons/ball_color.png" type="image/x-icon">
     <script src="./scripts/script.js"></script>
     <script src="./scripts/templates.js"></script>
-   
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="./styles/typeColors.css">
 </head>
@@ -17,7 +16,10 @@
     <div class="mainDiv">
         <header>
             <nav class="navContent maxWidth resp">
-                <a href="index.html"><img id="logo" src="#" alt="logo" /></a>
+                <div class="logoDiv"><a href="index.html"><img id="logo" src="./assets/icons/ball_mono.png"
+                            alt="logo" /></a>
+                    <h2>Pokedex</h2>
+                </div>
                 <div class="navLinks linksDesktop">
                     <a class="aktiveLink" href="index.html">Start</a>
                     <a class="linkStyle" href="recipe_Team_crossaints.html">Pokemon des Tages</a>
@@ -35,12 +37,9 @@
             <a class="linkStyle" href="#">Impressum</a>
         </div>
 
-        <main>
-
-            <div class="content" id="content">
-
-            </div>
-
+        <main class="mainContent">
+            <div class="content" id="content"></div>
+            <button class="moreButton" onclick="morePokemon()">Please show more Pokemon...!</button>
         </main>
 
         <footer>
@@ -63,4 +62,5 @@
 
 </body>
 <script src="./scripts/db.js"></script>
+
 </html>
