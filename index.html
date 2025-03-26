@@ -13,7 +13,7 @@
 </head>
 
 <body onload="getPromise()">
-    <div class="mainDiv">
+    <div id="mainDiv" class="mainDiv">
         <header>
             <nav class="navContent maxWidth resp">
                 <div class="logoDiv"><a href="index.html"><img id="logo" src="./assets/icons/ball_mono.png"
@@ -38,6 +38,7 @@
         </div>
 
         <main class="mainContent">
+            <div class="currentContent" id="currentContent"></div>
             <div class="content" id="content"></div>
             <button class="moreButton" onclick="morePokemon()">Please show more Pokemon...!</button>
         </main>
