@@ -50,8 +50,8 @@ function openCurrentPokemon(index) {
 }
 
 function establishCurrentPokeType(allPokemon, index, data) {
-    document.getElementById("contentImg").src = data.sprites.other.home.front_default;
-    document.getElementById("contentImg").classList.add(data.types[0].type.name);
+    document.getElementById("currentContentImg").src = data.sprites.other.home.front_default;
+    document.getElementById("currentContentImgDiv").classList.add(data.types[0].type.name);
     for (let typeIndex = 0; typeIndex < data.types.length; typeIndex++) {
         document.getElementById("pokemonType").innerHTML += renderCurrentPokeType(allPokemon, index, typeIndex);
         document.getElementById("typeImg" + allPokemon[index].id + "_" + typeIndex).src = "./assets/icons/" + data.types[typeIndex].type.name + ".png";

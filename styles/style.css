@@ -100,7 +100,7 @@ header {
     background-color: rgb(8, 33, 41);
     border-radius: 20px;
     width: 300px;
-    height: 400px;
+    height: 390px;
 }
 
 .pokeCardHeader {
@@ -124,7 +124,7 @@ header {
 .pokemonType {
     display: flex;
     width: 100%;
-    padding: 5px 0px;
+    padding-top: 10px;
     justify-content: center;
     gap: 20px;
 }
@@ -157,8 +157,6 @@ header {
     justify-content: center;
     position: fixed;
     z-index: 1;
-    width: 700px;
-    height: 600px;
 }
 
 .currentPokeCard {
@@ -166,14 +164,59 @@ header {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-     background-color: rgb(8, 33, 41);
+    background-color: rgb(8, 33, 41);
     border-radius: 20px;
-    width: 700px;
-    height: 600px;
+    width: 500px;
 }
 
+.currentContentImgDiv {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+
 .currentContentImg {
-    width: 500px;
+    width: 250px;
+}
+
+.attributeDiv {
+    width: 100%;
+}
+
+.attributeButtonDiv {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding-top: 10px;
+}
+
+.activeAttributeButton {
+    cursor: pointer;
+    background-color: rgb(5, 23, 30);
+    width: 33%;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.attributeButton {
+    cursor: pointer;
+    background-color: rgb(5, 23, 30);
+    width: 33%;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.mainStats {
+    height: 300px;
 }
 
 /* Footer */
