@@ -65,5 +65,14 @@ async function loadAttributesData(url = "") {
 async function loadCurrentPokemonData (allPokemon, index) {
     let data = await getAttributes(allPokemon, index);
     establishCurrentPokeType(allPokemon, index, data);
-    // return data;
+}
+
+async function loadMainAttributesData () {
+    let index = document.getElementById("pokeID").innerHTML.replace("#", "") - 1;
+    let data = await getAttributes(allPokemon, index);
+    let abilities = "";
+    for (let abilitieIndex = 0; abilitieIndex < data.abilities.length; abilitieIndex++) {
+        abilities += data.abilities[abilitieIndex].ability.name + " "; 
+    }
+    document.getElementById("mainStats").innerHTML = renderMainAttributesData(abilities, data);
 }

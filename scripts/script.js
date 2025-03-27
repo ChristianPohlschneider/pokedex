@@ -56,4 +56,15 @@ function establishCurrentPokeType(allPokemon, index, data) {
         document.getElementById("pokemonType").innerHTML += renderCurrentPokeType(allPokemon, index, typeIndex);
         document.getElementById("typeImg" + allPokemon[index].id + "_" + typeIndex).src = "./assets/icons/" + data.types[typeIndex].type.name + ".png";
     }
+    loadMainAttributesData()
+}
+
+function getAttributeData(folder) {
+    if (folder = 1) {
+        loadMainAttributesData();
+    } else if (folder = 2) {
+        
+    } else {
+        
+    }
 }

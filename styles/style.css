@@ -216,7 +216,22 @@ header {
 }
 
 .mainStats {
+    display: flex;
     height: 300px;
+    padding: 30px;
+}
+
+.mainAttribute {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 28.5%;
+}
+
+.mainResults {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 /* Footer */
