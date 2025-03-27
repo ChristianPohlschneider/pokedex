@@ -59,7 +59,7 @@ function renderMainAttributesData(abilities, data) {
         <div>: ${Math.abs(Number(data.height) / 10)} m</div>
         <div>: ${Math.abs(Number(data.weight) / 10)} kg</div>
         <div>: ${data.base_experience}</div>
-        <div>: ${abilities.replace(" ", ", ").slice(0, -1)}</div>
+        <div>: ${abilities.slice(0, -2)}</div>
     </div>
     `;
 }

@@ -72,7 +72,7 @@ async function loadMainAttributesData () {
     let data = await getAttributes(allPokemon, index);
     let abilities = "";
     for (let abilitieIndex = 0; abilitieIndex < data.abilities.length; abilitieIndex++) {
-        abilities += data.abilities[abilitieIndex].ability.name + " "; 
+        abilities += data.abilities[abilitieIndex].ability.name + ", ";
     }
     document.getElementById("mainStats").innerHTML = renderMainAttributesData(abilities, data);
 }
