@@ -1,8 +1,9 @@
 function renderPokeCard(initArray, index) {
     return `
     <div onclick="openCurrentPokemon(${initArray[index].id}, event)" class="pokeCard">
+    <p class="pokeCardID">#${Math.abs(Number(initArray[index].id) + 1)}</p>
         <div class="pokeCardHeader" id="pokeCardHeader">
-            <p class="pokeID">#${Math.abs(Number(initArray[index].id) + 1)}</p>
+            
             <p>${initArray[index].name}</p>
         </div>
         <img class="contentImg" id="contentImg${initArray[index].id}" src="" alt="pokemon">
