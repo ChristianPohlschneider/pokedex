@@ -43,11 +43,23 @@ function morePokemon() {
     getPromise();
 }
 
-function openCurrentPokemon(index) {
+function openCurrentPokemon(index, event) {
     document.getElementById("currentContent").innerHTML = "";
     document.getElementById("currentContent").innerHTML += renderCurrentPokemon(index);
-    loadCurrentPokemonData (allPokemon, index)
+    loadCurrentPokemonData (allPokemon, index);
+    event.stopPropagation();
+    document.body.classList.add("stopScrolling");
 }
+
+function closeCurrentPokemon(e, event) {
+    if (e == 0) {
+        event.stopPropagation();
+        return
+      } else {
+        document.getElementById("currentContent").innerHTML = "";
+        document.body.classList.remove("stopScrolling"); 
+      }
+    }
 
 function establishCurrentPokeType(allPokemon, index, data) {
     document.getElementById("currentContentImg").src = data.sprites.other.home.front_default;

@@ -1,6 +1,6 @@
 function renderPokeCard(initArray, index) {
     return `
-    <div onclick="openCurrentPokemon(${initArray[index].id})" class="pokeCard">
+    <div onclick="openCurrentPokemon(${initArray[index].id}, event)" class="pokeCard">
         <div class="pokeCardHeader" id="pokeCardHeader">
             <p class="pokeID">#${Math.abs(Number(initArray[index].id) + 1)}</p>
             <p>${initArray[index].name}</p>
@@ -19,10 +19,11 @@ function renderSpecificPokeType(initArray, index, typeIndex) {
 
 function renderCurrentPokemon(index) {
     return `
-    <div class="currentPokeCard">
+    <div class="currentPokeCard" onclick="closeCurrentPokemon(0, event)">
         <div class="pokeCardHeader" id="pokeCardHeader">
             <p class="pokeID"  id="pokeID">#${Number(allPokemon[index].id)}</p>
-            <p>${allPokemon[index].name}</p>
+            <p class="pokemonName">${allPokemon[index].name}</p>
+            <span class="close" onclick="closeCurrentPokemon(1, event)">&times;</span>
         </div>
         <div class="currentContentImgDiv" id="currentContentImgDiv">
             <img class="currentContentImg" id="currentContentImg" src="" alt="pokemon">

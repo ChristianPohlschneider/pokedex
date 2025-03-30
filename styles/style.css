@@ -1,3 +1,4 @@
+
 * {
     margin: 0;
     padding: 0;
@@ -5,6 +6,12 @@
     font-family: 'Raleway', sans-serif;
     color: white;
 }
+
+/* prevent scrollbar shift */
+html {
+    width: 100vw;
+    scrollbar-gutter: auto;
+  }
 
 .maxWidth {
     max-width: 1440px;
@@ -14,10 +21,13 @@
 .mainDiv {
     display: flex;
     flex-direction: column;
+    width: 100vw;
     min-height: 100vh;
     position: relative;
     overflow-x: hidden;
     background-color: rgb(5, 23, 30);
+
+    
 }
 
 .mainContent {
@@ -27,7 +37,6 @@
 }
 
 /* header */
-
 header {
     height: 100px;
     width: 100%;
@@ -109,12 +118,20 @@ header {
     flex-direction: row;
     justify-content: center;
     padding: 5px 0px;
+    align-items: center;
+    padding: 15px;
 }
 
 .pokeID {
     display: flex;
     position: relative;
-    left: -30%;
+    left: 10px;
+}
+
+.pokemonName {
+    display: flex;
+    width: 100%;
+    justify-content: center;
 }
 
 .contentImg {
@@ -213,6 +230,29 @@ header {
     text-align: center;
     text-decoration: none;
     font-size: 16px;
+}
+
+.stopScrolling {
+    height: 100vh;
+    overflow: hidden;
+    /* padding-left: calc(100vw - 100%); */
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    right: 10px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: rgb(179, 20, 19);
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .mainStats {
