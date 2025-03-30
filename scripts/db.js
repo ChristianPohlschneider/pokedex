@@ -68,6 +68,7 @@ async function loadCurrentPokemonData (allPokemon, index) {
 }
 
 async function loadMainAttributesData () {
+    document.getElementById("mainStats").innerHTML = "";
     let index = document.getElementById("pokeID").innerHTML.replace("#", "") - 1;
     let data = await getAttributes(allPokemon, index);
     let abilities = "";
@@ -75,4 +76,11 @@ async function loadMainAttributesData () {
         abilities += data.abilities[abilitieIndex].ability.name + ", ";
     }
     document.getElementById("mainStats").innerHTML = renderMainAttributesData(abilities, data);
+}
+
+async function loadStatsAttributesData() {
+    document.getElementById("mainStats").innerHTML = "";
+    let index = document.getElementById("pokeID").innerHTML.replace("#", "") - 1;
+    let data = await getAttributes(allPokemon, index);
+    document.getElementById("mainStats").innerHTML = renderStatsAttributesData(data);
 }

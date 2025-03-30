@@ -21,7 +21,7 @@ function renderSpecificPokeType(initArray, index, typeIndex) {
 function renderCurrentPokemon(index) {
     return `
     <div class="currentPokeCard" onclick="closeCurrentPokemon(0, event)">
-        <div class="pokeCardHeader" id="pokeCardHeader">
+        <div class="currentPokeCardHeader" id="pokeCardHeader">
             <p class="pokeID"  id="pokeID">#${Number(allPokemon[index].id)}</p>
             <p class="pokemonName">${allPokemon[index].name}</p>
             <span class="close" onclick="closeCurrentPokemon(1, event)">&times;</span>
@@ -31,7 +31,7 @@ function renderCurrentPokemon(index) {
         </div>
         <div class="pokemonType" id="pokemonType"></div>
             <div class="attributeDiv" id="attributeDiv">
-                <div class="attributeButtonDiv" id="attributeButtonDiv">
+                <div class="attributeButtonDiv" id="attributeButtonDiv" onclick="closeCurrentPokemon(2, event)">
                         <button onclick="getAttributeData(1)" class="activeAttributeButton" id="attributeButton">main</button>
                         <button onclick="getAttributeData(2)" class="attributeButton" id="attributeButton">stats</button>
                         <button onclick="getAttributeData(3)" class="attributeButton" id="attributeButton">evo chain</button>
@@ -62,6 +62,43 @@ function renderMainAttributesData(abilities, data) {
         <div>: ${Math.abs(Number(data.weight) / 10)} kg</div>
         <div>: ${data.base_experience}</div>
         <div>: ${abilities.slice(0, -2)}</div>
+    </div>
+    `;
+}
+
+function renderStatsAttributesData(data) {
+    return `
+    <div class="statsAttribute">
+        <div class="attribute"><p class="attributeName">hp</p>
+            <div class="outerScale">
+                <div class="innerScale" id="innerScale0" style="width: ${Math.abs(Number(data.stats[0].base_stat) * 3)}px"></div>
+            </div>
+        </div>
+                <div class="attribute"><p class="attributeName">attack</p>
+            <div class="outerScale">
+                <div class="innerScale" id="innerScale1" style="width: ${Math.abs(Number(data.stats[1].base_stat) * 3)}px"></div>
+            </div>
+        </div>
+                <div class="attribute"><p class="attributeName">defense</p>
+            <div class="outerScale">
+                <div class="innerScale" id="innerScale2" style="width: ${Math.abs(Number(data.stats[2].base_stat) * 3)}px"></div>
+            </div>
+        </div>
+                <div class="attribute"><p class="attributeName">special-attack</p>
+            <div class="outerScale">
+                <div class="innerScale" id="innerScale3" style="width: ${Math.abs(Number(data.stats[3].base_stat) * 3)}px"></div>
+            </div>
+        </div>
+                <div class="attribute"><p class="attributeName">special-defense</p>
+            <div class="outerScale">
+                <div class="innerScale" id="innerScale4" style="width: ${Math.abs(Number(data.stats[4].base_stat) *3)}px"></div>
+            </div>
+        </div>
+                <div class="attribute"><p class="attributeName">speed</p>
+            <div class="outerScale">
+                <div class="innerScale" id="innerScale5" style="width: ${Math.abs(Number(data.stats[5].base_stat) * 3)}px"></div>
+            </div>
+        </div>
     </div>
     `;
 }

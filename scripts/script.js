@@ -55,9 +55,11 @@ function closeCurrentPokemon(e, event) {
     if (e == 0) {
         event.stopPropagation();
         return
-      } else {
+      } else if (e == 1) {
         document.getElementById("currentContent").innerHTML = "";
         document.body.classList.remove("stopScrolling"); 
+      } else {
+        return
       }
     }
 
@@ -72,10 +74,10 @@ function establishCurrentPokeType(allPokemon, index, data) {
 }
 
 function getAttributeData(folder) {
-    if (folder = 1) {
+    if (folder == 1) {
         loadMainAttributesData();
-    } else if (folder = 2) {
-        
+    } else if (folder == 2) {
+        loadStatsAttributesData()
     } else {
         
     }
