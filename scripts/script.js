@@ -79,6 +79,6 @@ function getAttributeData(folder) {
     } else if (folder == 2) {
         loadStatsAttributesData()
     } else {
-        
+        loadEvolutionChainData()
     }
 }

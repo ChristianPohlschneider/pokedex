@@ -1,4 +1,5 @@
 const BASE_URL = "https://pokeapi.co/api/v2/";
+const Evolution_Chain = "evolution-chain/";
 let attributesArray = [];
 
 async function loadFromAPI() {
@@ -62,12 +63,12 @@ async function loadAttributesData(url = "") {
     }
 }
 
-async function loadCurrentPokemonData (allPokemon, index) {
+async function loadCurrentPokemonData(allPokemon, index) {
     let data = await getAttributes(allPokemon, index);
     establishCurrentPokeType(allPokemon, index, data);
 }
 
-async function loadMainAttributesData () {
+async function loadMainAttributesData() {
     document.getElementById("mainStats").innerHTML = "";
     let index = document.getElementById("pokeID").innerHTML.replace("#", "") - 1;
     let data = await getAttributes(allPokemon, index);
@@ -80,7 +81,22 @@ async function loadMainAttributesData () {
 
 async function loadStatsAttributesData() {
     document.getElementById("mainStats").innerHTML = "";
+    document.getElementById("mainStats").innerHTML = renderStatsAttributesDataDiv();
     let index = document.getElementById("pokeID").innerHTML.replace("#", "") - 1;
     let data = await getAttributes(allPokemon, index);
-    document.getElementById("mainStats").innerHTML = renderStatsAttributesData(data);
+    for (let statIndex = 0; statIndex < data.stats.length; statIndex++) {
+        document.getElementById("statsAttribute").innerHTML += renderStatsAttributesData(data, statIndex);
+    }
+}
+
+async function loadEvolutionChainData() {
+    document.getElementById("mainStats").innerHTML = "";
+    let index = document.getElementById("pokeID").innerHTML.replace("#", "") - 1;
+    let evolutionChain = await loadAttributesData(BASE_URL + Evolution_Chain + Math.abs(Number(index) +1));
+    for (let chainIndex = 0; chainIndex < evolutionChain.chain.evolves_to[0].evolves_to.length; chainIndex++) {
+        document.getElementById("mainStats").innerHTML = renderEvolutionChainData(allPokemon, index);
+        let attributes = await getAttributes(allPokemon, index);
+        document.getElementById("evolutionChainImg" + allPokemon[index].id).src = attributes.sprites.other.home.front_default;
+    }
+
 }

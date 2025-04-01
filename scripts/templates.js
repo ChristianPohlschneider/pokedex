@@ -66,39 +66,24 @@ function renderMainAttributesData(abilities, data) {
     `;
 }
 
-function renderStatsAttributesData(data) {
+function renderStatsAttributesDataDiv() {
     return `
-    <div class="statsAttribute">
-        <div class="attribute"><p class="attributeName">hp</p>
-            <div class="outerScale">
-                <div class="innerScale" id="innerScale0" style="width: ${Math.abs(Number(data.stats[0].base_stat) * 3)}px"></div>
-            </div>
-        </div>
-                <div class="attribute"><p class="attributeName">attack</p>
-            <div class="outerScale">
-                <div class="innerScale" id="innerScale1" style="width: ${Math.abs(Number(data.stats[1].base_stat) * 3)}px"></div>
-            </div>
-        </div>
-                <div class="attribute"><p class="attributeName">defense</p>
-            <div class="outerScale">
-                <div class="innerScale" id="innerScale2" style="width: ${Math.abs(Number(data.stats[2].base_stat) * 3)}px"></div>
-            </div>
-        </div>
-                <div class="attribute"><p class="attributeName">special-attack</p>
-            <div class="outerScale">
-                <div class="innerScale" id="innerScale3" style="width: ${Math.abs(Number(data.stats[3].base_stat) * 3)}px"></div>
-            </div>
-        </div>
-                <div class="attribute"><p class="attributeName">special-defense</p>
-            <div class="outerScale">
-                <div class="innerScale" id="innerScale4" style="width: ${Math.abs(Number(data.stats[4].base_stat) *3)}px"></div>
-            </div>
-        </div>
-                <div class="attribute"><p class="attributeName">speed</p>
-            <div class="outerScale">
-                <div class="innerScale" id="innerScale5" style="width: ${Math.abs(Number(data.stats[5].base_stat) * 3)}px"></div>
-            </div>
-        </div>
-    </div>
+    <div id="statsAttribute" class="statsAttribute"></div>
     `;
+}
+
+function renderStatsAttributesData(data, statIndex) {
+    return `
+        <div class="attribute"><p class="attributeName">${data.stats[statIndex].stat.name}</p>
+            <div class="outerScale">
+                <div class="innerScale" id="innerScale${statIndex}" style="width: ${Math.abs(Number(data.stats[statIndex].base_stat) * 3)}px"></div>
+            </div>
+        </div>
+    `;
+}
+
+function renderEvolutionChainData(allPokemon, index) {
+    return `
+<img class="contentImg" id="evolutionChainImg${allPokemon[index].id}" src="" alt="pokemon"></img>
+`;
 }
