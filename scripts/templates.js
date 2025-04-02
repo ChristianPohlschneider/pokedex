@@ -74,16 +74,22 @@ function renderStatsAttributesDataDiv() {
 
 function renderStatsAttributesData(data, statIndex) {
     return `
-        <div class="attribute"><p class="attributeName">${data.stats[statIndex].stat.name}</p>
-            <div class="outerScale">
-                <div class="innerScale" id="innerScale${statIndex}" style="width: ${Math.abs(Number(data.stats[statIndex].base_stat) * 3)}px"></div>
-            </div>
+    <div class="attribute"><p class="attributeName">${data.stats[statIndex].stat.name}</p>
+        <div class="outerScale">
+            <div class="innerScale" id="innerScale${statIndex}" style="width: ${Math.abs(Number(data.stats[statIndex].base_stat) * 3)}px"></div>
         </div>
+    </div>
     `;
 }
 
-function renderEvolutionChainData(allPokemon, index) {
+function renderEvolutionChainData(number) {
     return `
-<img class="contentImg" id="evolutionChainImg${allPokemon[index].id}" src="" alt="pokemon"></img>
-`;
+    <img class="chainContentImg" id="evolutionChainImg${number}" src="" alt="pokemon"></img>
+    `;
+}
+
+function renderArrow() {
+    return `
+    <img class="chainContentArrow" src="./assets/img/arrow_evolution.png" alt="arrow">
+    `;
 }

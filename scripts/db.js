@@ -1,5 +1,5 @@
 const BASE_URL = "https://pokeapi.co/api/v2/";
-const Evolution_Chain = "evolution-chain/";
+const Evolution_Chain = "pokemon-species/";
 let attributesArray = [];
 
 async function loadFromAPI() {
@@ -92,11 +92,30 @@ async function loadStatsAttributesData() {
 async function loadEvolutionChainData() {
     document.getElementById("mainStats").innerHTML = "";
     let index = document.getElementById("pokeID").innerHTML.replace("#", "") - 1;
-    let evolutionChain = await loadAttributesData(BASE_URL + Evolution_Chain + Math.abs(Number(index) +1));
-    for (let chainIndex = 0; chainIndex < evolutionChain.chain.evolves_to[0].evolves_to.length; chainIndex++) {
-        document.getElementById("mainStats").innerHTML = renderEvolutionChainData(allPokemon, index);
-        let attributes = await getAttributes(allPokemon, index);
-        document.getElementById("evolutionChainImg" + allPokemon[index].id).src = attributes.sprites.other.home.front_default;
+    let attributes = await getAttributes(allPokemon, index);
+    let species = await loadAttributesData(BASE_URL + Evolution_Chain + Math.abs(Number(index) + 1));
+    let evolutionChain = await loadAttributesData(species.evolution_chain.url);
+    document.getElementById("mainStats").innerHTML = renderEvolutionChainData(1);
+    let attributeData = await loadAttributesData(allPokemon[findPokemonIndex(evolutionChain.chain.species.name)].url);
+    document.getElementById("evolutionChainImg" + 1).src = attributeData.sprites.other.home.front_default;
+    if (evolutionChain.chain.evolves_to.length != 0) {
+        document.getElementById("mainStats").innerHTML += renderArrow();
+        let attributeData = await loadAttributesData(allPokemon[findPokemonIndex(evolutionChain.chain.evolves_to[0].species.name)].url);
+        document.getElementById("mainStats").innerHTML += renderEvolutionChainData(2);
+        document.getElementById("evolutionChainImg" + 2).src = attributeData.sprites.other.home.front_default;
     }
+    if (evolutionChain.chain.evolves_to[0].evolves_to.length != 0) {
+        document.getElementById("mainStats").innerHTML += renderArrow();
+        let attributeData = await loadAttributesData(allPokemon[findPokemonIndex(evolutionChain.chain.evolves_to[0].evolves_to[0].species.name)].url);
+        document.getElementById("mainStats").innerHTML += renderEvolutionChainData(3);
+        document.getElementById("evolutionChainImg" + 3).src = attributeData.sprites.other.home.front_default;
+    }
+}
 
+function findPokemonIndex(pokemonName) {
+    for (let findIndex = 0; findIndex < allPokemon.length; findIndex++) {
+        if (allPokemon[findIndex].name == pokemonName) {
+            return allPokemon[findIndex].id -1;
+        }
+    }
 }
