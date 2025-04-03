@@ -6,6 +6,11 @@
     color: white;
 }
 
+body {
+    height: 100vh;
+    overflow: auto;
+}
+
 /* prevent scrollbar shift */
 html {
     width: 100vw;
@@ -47,10 +52,11 @@ header {
     display: flex;
     align-items: center;
     gap: 10px;
-    
+
 }
 
-.logoDiv:hover, h2:hover{
+.logoDiv:hover,
+h2:hover {
     transition: 0.3s;
     color: rgb(179, 20, 19);
 }
@@ -256,7 +262,7 @@ header {
 
 .stopScrolling {
     height: 100vh;
-    overflow: hidden;
+    overflow-y: hidden;
 }
 
 /* The Close Button */
@@ -281,6 +287,7 @@ header {
     height: 300px;
     padding: 30px;
     align-items: flex-start;
+    justify-content: center;
 }
 
 .mainAttribute {
@@ -299,7 +306,7 @@ header {
 .statsAttribute {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 16px;
     width: 100%;
 }
 
@@ -331,9 +338,23 @@ header {
     width: auto;
 }
 
+.arrowDiv {
+    display: flex;
+    height: 125px;
+    align-items: center;
+}
+
 .chainContentArrow {
     height: 50px;
     width: 30px;
+}
+
+.searchInput {
+    color: black;
+}
+
+.searchButton {
+    color: black;
 }
 
 /* Footer */

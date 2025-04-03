@@ -90,6 +90,8 @@ function renderEvolutionChainData(number) {
 
 function renderArrow() {
     return `
+    <div class="arrowDiv">
     <img class="chainContentArrow" src="./assets/img/arrow_evolution.png" alt="arrow">
+    </div>
     `;
 }

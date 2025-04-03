@@ -46,7 +46,7 @@ function morePokemon() {
 function openCurrentPokemon(index, event) {
     document.getElementById("currentContent").innerHTML = "";
     document.getElementById("currentContent").innerHTML += renderCurrentPokemon(index);
-    loadCurrentPokemonData (allPokemon, index);
+    loadCurrentPokemonData(allPokemon, index);
     event.stopPropagation();
     document.body.classList.add("stopScrolling");
 }
@@ -55,13 +55,13 @@ function closeCurrentPokemon(e, event) {
     if (e == 0) {
         event.stopPropagation();
         return
-      } else if (e == 1) {
+    } else if (e == 1) {
         document.getElementById("currentContent").innerHTML = "";
-        document.body.classList.remove("stopScrolling"); 
-      } else {
+        document.body.classList.remove("stopScrolling");
+    } else {
         return
-      }
     }
+}
 
 function establishCurrentPokeType(allPokemon, index, data) {
     document.getElementById("currentContentImg").src = data.sprites.other.home.front_default;
@@ -81,4 +81,21 @@ function getAttributeData(folder) {
     } else {
         loadEvolutionChainData()
     }
+}
+
+function findPokemonIndex(pokemonName) {
+    for (let findIndex = 0; findIndex < allPokemon.length; findIndex++) {
+        if (allPokemon[findIndex].name == pokemonName) {
+            return allPokemon[findIndex].id - 1;
+        }
+    }
+}
+
+function searchPokemon() {
+    let logElement = document.getElementById("foundPokemon");
+    let inputElement = document.getElementById("pokemonSearch");
+    
+    const searchProperty = (inputElement.value);
+    const matches = allPokemon.match(searchProperty);
+    logElement.innerHTML = matches;
 }

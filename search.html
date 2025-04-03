@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="./styles/typeColors.css">
 </head>
 
-<body onload="getPromise()">
+<body>
     <div id="mainDiv" class="mainDiv" onclick="closeCurrentPokemon(1, event)">
         <header>
             <nav class="navContent maxWidth resp">
@@ -38,7 +38,10 @@
         <main class="mainContent">
             <div class="currentContent" id="currentContent"></div>
             <div class="content" id="content"></div>
-            <button class="moreButton" onclick="morePokemon()">Please show more Pokemon...!</button>
+            <label for="site-search">Search the site:</label>
+            <input class="searchInput" type="search" id="pokemonSearch" name="q" minlength="3" maxlength="20"/>
+            <button class="searchButton" onclick="searchPokemon()">Search</button>
+            <div id="foundPokemon"></div>
         </main>
 
         <footer>
