@@ -92,7 +92,6 @@ async function loadStatsAttributesData() {
 async function loadEvolutionChainData() {
     document.getElementById("mainStats").innerHTML = "";
     let index = document.getElementById("pokeID").innerHTML.replace("#", "") - 1;
-    // let attributes = await getAttributes(allPokemon, index);
     let species = await loadAttributesData(BASE_URL + Evolution_Chain + Math.abs(Number(index) + 1));
     let evolutionChain = await loadAttributesData(species.evolution_chain.url);
     document.getElementById("mainStats").innerHTML = renderEvolutionChainData(1);

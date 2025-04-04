@@ -84,18 +84,22 @@ function getAttributeData(folder) {
 }
 
 function findPokemonIndex(pokemonName) {
+    let searchArray = [];
     for (let findIndex = 0; findIndex < allPokemon.length; findIndex++) {
-        if (allPokemon[findIndex].name == pokemonName) {
-            return allPokemon[findIndex].id - 1;
+        let testName =allPokemon[findIndex].name;
+        let pattern = new RegExp(pokemonName);
+        if (pattern.test(testName) == true) {
+            console.log("match");
+            searchArray.push(allPokemon[findIndex].id);
         }
     }
+    return searchArray;
 }
 
 function searchPokemon() {
     let logElement = document.getElementById("foundPokemon");
     let inputElement = document.getElementById("pokemonSearch");
-    
-    const searchProperty = (inputElement.value);
-    const matches = allPokemon.match(searchProperty);
+    let searchProperty = (inputElement.value);
+    let matches = findPokemonIndex(searchProperty);
     logElement.innerHTML = matches;
 }
