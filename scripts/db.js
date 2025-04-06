@@ -14,7 +14,7 @@ async function loadFromAPI() {
             }
         )
         let attributes = await getAttributes(initArray, index);
-        initArray[index].id = attributes.id - 1;
+        initArray[index].id = attributes.id;
         renderPokeCards(initArray, index, attributes);
     }
 }

@@ -86,7 +86,7 @@ function getAttributeData(folder) {
 function findPokemonIndex(pokemonName) {
     let searchArray = [];
     for (let findIndex = 0; findIndex < allPokemon.length; findIndex++) {
-        let testName =allPokemon[findIndex].name;
+        let testName = allPokemon[findIndex].name;
         let pattern = new RegExp(pokemonName);
         if (pattern.test(testName) == true) {
             console.log("match");
@@ -97,9 +97,20 @@ function findPokemonIndex(pokemonName) {
 }
 
 function searchPokemon() {
-    let logElement = document.getElementById("foundPokemon");
+    // let logElement = document.getElementById("content");
     let inputElement = document.getElementById("pokemonSearch");
     let searchProperty = (inputElement.value);
     let matches = findPokemonIndex(searchProperty);
-    logElement.innerHTML = matches;
+    document.getElementById("content").innerHTML = matches;
+    renderFoundPokemon(matches);
 }
+
+async function renderFoundPokemon(matches) {
+    for (let matchIndex = 0; matchIndex < matches.length; matchIndex++) {
+        // logElement.innerHTML += renderPokeCard(allPokemon, matches[matchIndex] -1);
+        let attributes = await getAttributes(allPokemon, matches[matchIndex] -1);
+        matches[matchIndex] = attributes.id -1;
+        renderPokeCards(allPokemon, matches[matchIndex], attributes);
+    }
+}
+
