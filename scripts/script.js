@@ -97,19 +97,19 @@ function findPokemonIndex(pokemonName) {
 }
 
 function searchPokemon() {
-    // let logElement = document.getElementById("content");
+    document.getElementById("content").innerHTML = "";
+    let matches = "";
     let inputElement = document.getElementById("pokemonSearch");
     let searchProperty = (inputElement.value);
-    let matches = findPokemonIndex(searchProperty);
-    document.getElementById("content").innerHTML = matches;
+    matches = findPokemonIndex(searchProperty);
+    // document.getElementById("content").innerHTML = matches;
     renderFoundPokemon(matches);
 }
 
 async function renderFoundPokemon(matches) {
     for (let matchIndex = 0; matchIndex < matches.length; matchIndex++) {
-        // logElement.innerHTML += renderPokeCard(allPokemon, matches[matchIndex] -1);
-        let attributes = await getAttributes(allPokemon, matches[matchIndex] -1);
-        matches[matchIndex] = attributes.id -1;
+        let attributes = await getAttributes(allPokemon, matches[matchIndex] - 1);
+        matches[matchIndex] = matches[matchIndex] - 1;
         renderPokeCards(allPokemon, matches[matchIndex], attributes);
     }
 }
