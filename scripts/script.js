@@ -6,15 +6,18 @@ let limit = 20;
 let endValue = 0;
 
 function getPromise() {
-    loadFromAPI()
+    showSpinner();
+    loadFromAPI();
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             if (initArray.length == 0) {
                 reject(console.error("Daten konnten nicht abgerufen werden"));
+                hideSpinner();
             } else {
                 resolve(console.log("Daten konnten abgerufen werden"))
+                hideSpinner();
             }
-        }, 1000);
+        }, 300);
     });
 }
 
@@ -75,12 +78,17 @@ function establishCurrentPokeType(allPokemon, index, data) {
 
 function getAttributeData(folder) {
     if (folder == 1) {
+        showSpinner();
         loadMainAttributesData();
+        
     } else if (folder == 2) {
+        showSpinner();
         loadStatsAttributesData()
     } else {
+        showSpinner();
         loadEvolutionChainData()
     }
+    hideSpinner();
 }
 
 function findPokemonIndex(pokemonName) {
@@ -104,17 +112,27 @@ function searchPokemon() {
         warningRef.innerHTML = 'Bitte eine Zahl zwischen 3 und 20 eingeben';
         return;
     } else {
-        showSearchedPokemon ();
+        showSpinner();
+        showSearchedPokemon();
+        hideSpinner();
     }
 }
 
-function showSearchedPokemon () {
+function showSearchedPokemon() {
     document.getElementById("content").innerHTML = "";
     let matches = "";
     let inputElement = document.getElementById("pokemonSearch");
     let searchProperty = (inputElement.value);
     matches = findPokemonIndex(searchProperty);
     renderFoundPokemon(matches);
+}
+
+function showSpinner() {
+    document.getElementById("spinner").style.display = "flex";
+}
+
+function hideSpinner() {
+    document.getElementById("spinner").style.display = "none";
 }
 
 

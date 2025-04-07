@@ -13,7 +13,11 @@
 </head>
 
 <body onload="getAllPokemon()">
+
+    <div class="spinner" id="spinner"></div>
+
     <div id="mainDiv" class="mainDiv" onclick="closeCurrentPokemon(1, event)">
+        
         <header>
             <nav class="navContent maxWidth resp">
                 <div class="logoDiv"><a href="index.html"><img id="logo" src="./assets/icons/ball_mono.png"
@@ -29,6 +33,7 @@
                     src="./assets/img/burger_icon2.png" alt="Burger icon" />
             </nav>
         </header>
+
         <div id="respMenu" class="respMenuBox respMenuClosed">
             <a class="linkStyle" href="index.html">Start</a>
             <a class="linkStyle" href="#">Random Pokemon</a>
