@@ -84,7 +84,9 @@ function renderStatsAttributesData(data, statIndex) {
 
 function renderEvolutionChainData(number) {
     return `
+    <div class="evolutionChainDiv" id="evolutionChainDiv${number}">
     <img class="chainContentImg" id="evolutionChainImg${number}" src="" alt="pokemon"></img>
+    </div>
     `;
 }
 

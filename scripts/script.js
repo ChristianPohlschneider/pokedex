@@ -97,20 +97,25 @@ function findPokemonIndex(pokemonName) {
 }
 
 function searchPokemon() {
+    let searchCharacterLength = document.getElementById("pokemonSearch").value;
+    let warningRef = document.getElementById('warning');
+    warningRef.innerHTML = "";
+    if (searchCharacterLength.length < 3 || searchCharacterLength.length > 20) {
+        warningRef.innerHTML = 'Bitte eine Zahl zwischen 3 und 20 eingeben';
+        return;
+    } else {
+        showSearchedPokemon ();
+    }
+}
+
+function showSearchedPokemon () {
     document.getElementById("content").innerHTML = "";
     let matches = "";
     let inputElement = document.getElementById("pokemonSearch");
     let searchProperty = (inputElement.value);
     matches = findPokemonIndex(searchProperty);
-    // document.getElementById("content").innerHTML = matches;
     renderFoundPokemon(matches);
 }
 
-async function renderFoundPokemon(matches) {
-    for (let matchIndex = 0; matchIndex < matches.length; matchIndex++) {
-        let attributes = await getAttributes(allPokemon, matches[matchIndex] - 1);
-        matches[matchIndex] = matches[matchIndex] - 1;
-        renderPokeCards(allPokemon, matches[matchIndex], attributes);
-    }
-}
+
 

@@ -20,15 +20,17 @@ async function loadFromAPI() {
 }
 
 async function getAllPokemon() {
-    let response = await loadData(TOTAL_PATH);
-    for (let index = 0; index < 1025; index++) {
-        allPokemon.push(
-            {
-                id: index + 1,
-                name: response[index].name,
-                url: response[index].url
-            }
-        )
+    if (allPokemon == "") {
+        let response = await loadData(TOTAL_PATH);
+        for (let index = 0; index < 1025; index++) {
+            allPokemon.push(
+                {
+                    id: index + 1,
+                    name: response[index].name,
+                    url: response[index].url
+                }
+            )
+        }
     }
 }
 
@@ -101,6 +103,7 @@ async function establishFirstEvolutionChainData(evolutionChain) {
     document.getElementById("mainStats").innerHTML = renderEvolutionChainData(1);
     let attributeData = await loadAttributesData(allPokemon[findPokemonIndex(evolutionChain.chain.species.name) - 1].url);
     document.getElementById("evolutionChainImg" + 1).src = attributeData.sprites.other.home.front_default;
+    document.getElementById("evolutionChainDiv" + 1).innerHTML += attributeData.name;
     establishSecondEvolutionChainData(evolutionChain);
 }
 
@@ -110,6 +113,7 @@ async function establishSecondEvolutionChainData(evolutionChain) {
         let attributeData = await loadAttributesData(allPokemon[findPokemonIndex(evolutionChain.chain.evolves_to[0].species.name) - 1].url);
         document.getElementById("mainStats").innerHTML += renderEvolutionChainData(2);
         document.getElementById("evolutionChainImg" + 2).src = attributeData.sprites.other.home.front_default;
+        document.getElementById("evolutionChainDiv" + 2).innerHTML += attributeData.name;
         establishThirdEvolutionChainData(evolutionChain);
     }
 }
@@ -120,5 +124,14 @@ async function establishThirdEvolutionChainData(evolutionChain) {
         let attributeData = await loadAttributesData(allPokemon[findPokemonIndex(evolutionChain.chain.evolves_to[0].evolves_to[0].species.name) - 1].url);
         document.getElementById("mainStats").innerHTML += renderEvolutionChainData(3);
         document.getElementById("evolutionChainImg" + 3).src = attributeData.sprites.other.home.front_default;
+        document.getElementById("evolutionChainDiv" + 3).innerHTML += attributeData.name;
+    }
+}
+
+async function renderFoundPokemon(matches) {
+    for (let matchIndex = 0; matchIndex < matches.length; matchIndex++) {
+        let attributes = await getAttributes(allPokemon, matches[matchIndex] - 1);
+        matches[matchIndex] = matches[matchIndex] - 1;
+        renderPokeCards(allPokemon, matches[matchIndex], attributes);
     }
 }

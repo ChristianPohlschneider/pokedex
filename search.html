@@ -37,11 +37,11 @@
 
         <main class="mainContent">
             <div class="currentContent" id="currentContent"></div>
-            <div class="content" id="content"></div>
             <label for="pokemonSearch" >Search the site:</label>
-            <input class="searchInput" type="search" id="pokemonSearch" placeholder="PLease type three letters for search" name="q" minlength="3" maxlength="20"/>
+            <input class="searchInput" type="search" id="pokemonSearch" placeholder="PLease type three letters for search" name="q" minlength=3 maxlength="20" required/>
             <button class="searchButton" onclick="searchPokemon()">Search</button>
-            <div id="content"></div>
+            <div id="warning"></div>
+            <div class="content" id="content"></div>
         </main>
 
         <footer>
