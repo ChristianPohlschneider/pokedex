@@ -21,6 +21,7 @@ async function loadFromAPI() {
 
 async function getAllPokemon() {
     if (allPokemon == "") {
+        showSpinner();
         let response = await loadData(TOTAL_PATH);
         for (let index = 0; index < 1025; index++) {
             allPokemon.push(
@@ -31,6 +32,7 @@ async function getAllPokemon() {
                 }
             )
         }
+        hideSpinner();
     }
 }
 
@@ -93,15 +95,15 @@ async function loadStatsAttributesData() {
 
 async function loadEvolutionChainData() {
     document.getElementById("mainStats").innerHTML = "";
-    let index = document.getElementById("pokeID").innerHTML.replace("#", "") - 1;
-    let species = await loadAttributesData(BASE_URL + Evolution_Chain + Math.abs(Number(index) + 1));
+    let index = document.getElementById("pokeID").innerHTML.replace("#", "");
+    let species = await loadAttributesData(BASE_URL + Evolution_Chain + Math.abs(Number(index)));
     let evolutionChain = await loadAttributesData(species.evolution_chain.url);
     establishFirstEvolutionChainData(evolutionChain);
 }
 
 async function establishFirstEvolutionChainData(evolutionChain) {
     document.getElementById("mainStats").innerHTML = renderEvolutionChainData(1);
-    let attributeData = await loadAttributesData(allPokemon[findPokemonIndex(evolutionChain.chain.species.name) - 1].url);
+    let attributeData = await loadAttributesData(allPokemon[findPokemonIndex(evolutionChain.chain.species.name)[0] - 1].url);
     document.getElementById("evolutionChainImg" + 1).src = attributeData.sprites.other.home.front_default;
     document.getElementById("evolutionChainDiv" + 1).innerHTML += attributeData.name;
     establishSecondEvolutionChainData(evolutionChain);
@@ -110,11 +112,15 @@ async function establishFirstEvolutionChainData(evolutionChain) {
 async function establishSecondEvolutionChainData(evolutionChain) {
     if (evolutionChain.chain.evolves_to.length != 0) {
         document.getElementById("mainStats").innerHTML += renderArrow();
-        let attributeData = await loadAttributesData(allPokemon[findPokemonIndex(evolutionChain.chain.evolves_to[0].species.name) - 1].url);
-        document.getElementById("mainStats").innerHTML += renderEvolutionChainData(2);
-        document.getElementById("evolutionChainImg" + 2).src = attributeData.sprites.other.home.front_default;
-        document.getElementById("evolutionChainDiv" + 2).innerHTML += attributeData.name;
-        establishThirdEvolutionChainData(evolutionChain);
+        if (evolutionChain.chain.evolves_to.length == 1) {
+            let attributeData = await loadAttributesData(allPokemon[findPokemonIndex(evolutionChain.chain.evolves_to[0].species.name) - 1].url);
+            document.getElementById("mainStats").innerHTML += renderEvolutionChainData(2);
+            document.getElementById("evolutionChainImg" + 2).src = attributeData.sprites.other.home.front_default;
+            document.getElementById("evolutionChainDiv" + 2).innerHTML += attributeData.name;
+            establishThirdEvolutionChainData(evolutionChain);
+        } else if (evolutionChain.chain.evolves_to.length > 1) {
+            establishMultipleEvolutionChainData(evolutionChain);
+        }
     }
 }
 
@@ -125,6 +131,19 @@ async function establishThirdEvolutionChainData(evolutionChain) {
         document.getElementById("mainStats").innerHTML += renderEvolutionChainData(3);
         document.getElementById("evolutionChainImg" + 3).src = attributeData.sprites.other.home.front_default;
         document.getElementById("evolutionChainDiv" + 3).innerHTML += attributeData.name;
+    }
+}
+
+async function establishMultipleEvolutionChainData(evolutionChain) {
+    for (let multipleIndex = 0; multipleIndex < evolutionChain.chain.evolves_to.length; multipleIndex++) {
+        let attributeData = await loadAttributesData(allPokemon[findPokemonIndex(evolutionChain.chain.evolves_to[multipleIndex].species.name) - 1].url);
+        document.getElementById("mainStats").innerHTML += renderEvolutionChainData(4 + multipleIndex);
+        document.getElementById("evolutionChainImg" + Number(4 + multipleIndex)).src = attributeData.sprites.other.home.front_default;
+        document.getElementById("evolutionChainDiv" + Number(4 + multipleIndex)).innerHTML += attributeData.name;
+        if (multipleIndex == evolutionChain.chain.evolves_to.length -1) {
+            return
+        }
+        document.getElementById("mainStats").innerHTML += renderArrow();
     }
 }
 

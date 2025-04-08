@@ -14,10 +14,12 @@
 
 <body onload="getAllPokemon()">
 
-    <div class="spinner" id="spinner"></div>
+    <div class="spinnerDiv" id="spinnerDiv">
+        <div class="spinner" id="spinner"></div>
+    </div>
 
     <div id="mainDiv" class="mainDiv" onclick="closeCurrentPokemon(1, event)">
-        
+
         <header>
             <nav class="navContent maxWidth resp">
                 <div class="logoDiv"><a href="index.html"><img id="logo" src="./assets/icons/ball_mono.png"
@@ -42,8 +44,9 @@
 
         <main class="mainContent">
             <div class="currentContent" id="currentContent"></div>
-            <label for="pokemonSearch" >Search the site:</label>
-            <input class="searchInput" type="search" id="pokemonSearch" placeholder="PLease type three letters for search" name="q" minlength=3 maxlength="20" required/>
+            <label for="pokemonSearch">Search the site:</label>
+            <input class="searchInput" type="search" id="pokemonSearch"
+                placeholder="PLease type three letters for search" name="q" minlength=3 maxlength="20" required />
             <button class="searchButton" onclick="searchPokemon()">Search</button>
             <div id="warning"></div>
             <div class="content" id="content"></div>

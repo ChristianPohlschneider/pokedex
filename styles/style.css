@@ -8,12 +8,12 @@
 
 body {
     height: 100vh;
+    width: 100vw;
     overflow: auto;
 }
 
 /* prevent scrollbar shift */
 html {
-    width: 100vw;
     scrollbar-gutter: auto;
     overflow-x: hidden;
 }
@@ -24,33 +24,43 @@ html {
 }
 
 /* spinner */
+.spinnerDiv {
+    display: flex;
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(128, 128, 128, 0.5);
+    z-index: 1;
+}
+
 .spinner {
     display: none;
     position: absolute;
     z-index: 2;
-    width: 100px;
-    height: 100px;
-    top: 50%;
-    left: 50vw;
-    border: 6px solid #f3f3f3;
-    border-top: 6px solid #3498db;
+    width: 200px;
+    height: 200px;
+    top: 40%;
+    left: calc(50% - 110px);
+    border: 10px solid #f3f3f3;
+    border-top: 10px solid rgb(26, 50, 58);
     border-radius: 50%;
     animation: spin 1s linear infinite;
-  }
-  
-  @keyframes spin {
+}
+
+@keyframes spin {
     0% {
-      transform: rotate(0deg);
+        transform: rotate(0deg);
     }
+
     100% {
-      transform: rotate(360deg);
+        transform: rotate(360deg);
     }
-  }
+}
 
 .mainDiv {
     display: flex;
     flex-direction: column;
-    width: 100vw;
+    width: 100%;
     min-height: 100vh;
     position: relative;
     overflow-x: hidden;
@@ -129,7 +139,6 @@ h2:hover {
 }
 
 /* content */
-
 .content {
     display: flex;
     flex-wrap: wrap;
@@ -156,6 +165,7 @@ h2:hover {
     justify-content: center;
     align-items: center;
     padding-bottom: 15px;
+    font-size: larger;
 }
 
 .currentPokeCardHeader {
@@ -178,6 +188,7 @@ h2:hover {
     position: relative;
     left: -110px;
     bottom: -19px;
+    font-size: larger;
 }
 
 .pokemonName {
@@ -235,7 +246,7 @@ h2:hover {
     align-items: center;
     background-color: rgb(8, 33, 41);
     border-radius: 20px;
-    width: 500px;
+    width: 530px;
 }
 
 .currentContentImgDiv {
@@ -243,7 +254,6 @@ h2:hover {
     justify-content: center;
     width: 100%;
 }
-
 
 .currentContentImg {
     width: 250px;
@@ -308,10 +318,12 @@ h2:hover {
 
 .mainStats {
     display: flex;
-    height: 300px;
+    min-height: 300px;
     padding: 30px;
     align-items: flex-start;
     justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .mainAttribute {
@@ -389,7 +401,6 @@ h2:hover {
 }
 
 /* Footer */
-
 footer {
     margin-top: auto;
     height: 150px;
@@ -434,7 +445,6 @@ footer {
 }
 
 /* Responsive Menu */
-
 .respMenuClosed {
     transform: translateX(100%);
 }
@@ -456,9 +466,14 @@ footer {
 
 @media (max-width: 950px) {
 
-    /* html {
-        overflow-y: hidden;
-    } */
+    ::-webkit-scrollbar {
+        width: 0;
+        background-color: transparent;
+    }
+
+    .spinner {
+        left: calc(50% - 100px);
+    }
 
     .respMenuBox {
         display: flex;
@@ -508,5 +523,14 @@ footer {
 
     nav {
         padding: 16px;
+    }
+
+    .pokeCard {
+        margin: 20px 20px;
+        width: 280px;
+    }
+
+    .contentImg {
+        width: 280px;
     }
 }

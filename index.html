@@ -14,9 +14,12 @@
 
 <body onload="getPromise()">
 
-    <div class="spinner" id="spinner"></div>
+    <div class="spinnerDiv" id="spinnerDiv">
+        <div class="spinner" id="spinner"></div>
+    </div>
 
     <div id="mainDiv" class="mainDiv" onclick="closeCurrentPokemon(1, event)">
+
         <header>
             <nav class="navContent maxWidth resp">
                 <div class="logoDiv"><a href="index.html"><img id="logo" src="./assets/icons/ball_mono.png"
@@ -38,10 +41,10 @@
             <a class="linkStyle" href="search.html">Find Pokemon</a>
         </div>
 
-        <main class="mainContent">
+        <main class="mainContent maxWidth">
             <div class="currentContent" id="currentContent"></div>
             <div class="content" id="content"></div>
-            <button class="moreButton" onclick="morePokemon()">Please show more Pokemon...!</button>
+            <button class="moreButton" id="moreButton" onclick="morePokemon()">Please show more Pokemon...!</button>
         </main>
 
         <footer>

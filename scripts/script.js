@@ -14,7 +14,7 @@ function getPromise() {
                 reject(console.error("Daten konnten nicht abgerufen werden"));
                 hideSpinner();
             } else {
-                resolve(console.log("Daten konnten abgerufen werden"))
+                // resolve(console.log("Daten konnten abgerufen werden"));
                 hideSpinner();
             }
         }, 300);
@@ -40,10 +40,12 @@ function toggleMenu(id) {
 }
 
 function morePokemon() {
+    document.getElementById("moreButton").disabled = true;
     endValue = endValue + limit;
     INIT_PATH = "pokemon?limit=" + limit + "&offset=" + endValue;
     initArray = [];
     getPromise();
+    document.getElementById("moreButton").disabled = false;
 }
 
 function openCurrentPokemon(index, event) {
@@ -96,8 +98,7 @@ function findPokemonIndex(pokemonName) {
     for (let findIndex = 0; findIndex < allPokemon.length; findIndex++) {
         let testName = allPokemon[findIndex].name;
         let pattern = new RegExp(pokemonName);
-        if (pattern.test(testName) == true) {
-            console.log("match");
+        if (pattern.test(testName) === true) {
             searchArray.push(allPokemon[findIndex].id);
         }
     }
@@ -105,7 +106,7 @@ function findPokemonIndex(pokemonName) {
 }
 
 function searchPokemon() {
-    let searchCharacterLength = document.getElementById("pokemonSearch").value;
+    let searchCharacterLength = document.getElementById("pokemonSearch").value.length;
     let warningRef = document.getElementById('warning');
     warningRef.innerHTML = "";
     if (searchCharacterLength.length < 3 || searchCharacterLength.length > 20) {
@@ -121,17 +122,19 @@ function searchPokemon() {
 function showSearchedPokemon() {
     document.getElementById("content").innerHTML = "";
     let matches = "";
-    let inputElement = document.getElementById("pokemonSearch");
-    let searchProperty = (inputElement.value);
+    let inputElement = document.getElementById("pokemonSearch").value;
+    let searchProperty = (inputElement.toLowerCase());
     matches = findPokemonIndex(searchProperty);
     renderFoundPokemon(matches);
 }
 
 function showSpinner() {
+    document.getElementById("spinnerDiv").style.display = "flex";
     document.getElementById("spinner").style.display = "flex";
 }
 
 function hideSpinner() {
+    document.getElementById("spinnerDiv").style.display = "none";
     document.getElementById("spinner").style.display = "none";
 }
 
