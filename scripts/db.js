@@ -11,13 +11,11 @@ async function loadFromAPI() {
                 id: 0,
                 name: response[index].name,
                 url: response[index].url
-            }
-        )
+            })
         let attributes = await getAttributes(initArray, index);
         initArray[index].id = attributes.id;
         renderPokeCards(initArray, index, attributes);
-    }
-}
+    }}
 
 async function getAllPokemon() {
     if (allPokemon == "") {
@@ -30,11 +28,9 @@ async function getAllPokemon() {
                     name: response[index].name,
                     url: response[index].url
                 }
-            )
-        }
+            )}
         hideSpinner();
-    }
-}
+    }}
 
 async function getAttributes(Array, index) {
     let attributeData = await loadAttributesData(Array[index].url);
@@ -140,7 +136,7 @@ async function establishMultipleEvolutionChainData(evolutionChain) {
         document.getElementById("mainStats").innerHTML += renderEvolutionChainData(4 + multipleIndex);
         document.getElementById("evolutionChainImg" + Number(4 + multipleIndex)).src = attributeData.sprites.other.home.front_default;
         document.getElementById("evolutionChainDiv" + Number(4 + multipleIndex)).innerHTML += attributeData.name;
-        if (multipleIndex == evolutionChain.chain.evolves_to.length -1) {
+        if (multipleIndex == evolutionChain.chain.evolves_to.length - 1) {
             return
         }
         document.getElementById("mainStats").innerHTML += renderArrow();

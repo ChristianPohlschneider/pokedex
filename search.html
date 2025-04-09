@@ -22,14 +22,15 @@
 
         <header>
             <nav class="navContent maxWidth resp">
-                <div class="logoDiv"><a href="index.html"><img id="logo" src="./assets/icons/ball_mono.png"
-                            alt="logo" /></a>
-                    <h2>Pokedex</h2>
-                </div>
+                <a class="indexLink" href="index.html">
+                    <div class="logoDiv">
+                        <img id="logo" src="./assets/icons/ball_mono.png" alt="logo" />
+                        <h2>Pokedex</h2>
+                    </div>
+                </a>
                 <div class="navLinks linksDesktop">
-                    <a class="aktiveLink" href="index.html">Start</a>
-                    <a class="linkStyle" href="#">Random Pokemon</a>
-                    <a class="linkStyle" href="search.html">Find Pokemon</a>
+                    <a class="linkStyle" href="index.html">Start</a>
+                    <a class="activeLink" href="search.html">Find Pokemon</a>
                 </div>
                 <img onclick="toggleMenu('respMenu')" class="burgerDesktop burgerMobile"
                     src="./assets/img/burger_icon2.png" alt="Burger icon" />
@@ -38,15 +39,16 @@
 
         <div id="respMenu" class="respMenuBox respMenuClosed">
             <a class="linkStyle" href="index.html">Start</a>
-            <a class="linkStyle" href="#">Random Pokemon</a>
-            <a class="linkStyle" href="search.html">Find Pokemon</a>
+            <a class="activeLink" href="search.html">Find Pokemon</a>
         </div>
 
-        <main class="mainContent">
+        <main class="mainContentSearch">
             <div class="currentContent" id="currentContent"></div>
-            <label for="pokemonSearch">Search the site:</label>
-            <input class="searchInput" type="search" id="pokemonSearch"
-                placeholder="PLease type three letters for search" name="q" minlength=3 maxlength="20" required />
+            <label for="pokemonSearch">
+                <h3>Find pokemon by name:</h3>
+            </label>
+            <input class="searchInput" type="search" id="pokemonSearch" placeholder="PLease type in three letters"
+                name="q" minlength=3 maxlength="20" required />
             <button class="searchButton" onclick="searchPokemon()">Search</button>
             <div id="warning"></div>
             <div class="content" id="content"></div>
@@ -54,11 +56,6 @@
 
         <footer>
             <div class="footerContent maxWidth resp">
-                <div class="footerLinks">
-                    <a href="dataprotection.html">Datenschutz</a>
-                    <p>|</p>
-                    <a href="impressum.html">Impressum</a>
-                </div>
                 <div class="footerIcons">
                     <a href="https://www.facebook.com/" target="_blank"><img src="./assets/img/facebook_white.png"
                             alt="" /></a>
@@ -71,6 +68,7 @@
     </div>
 
 </body>
+
 <script src="./scripts/db.js"></script>
 
 </html>

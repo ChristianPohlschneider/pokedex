@@ -32,9 +32,9 @@ function renderCurrentPokemon(index) {
         <div class="pokemonType" id="pokemonType"></div>
             <div class="attributeDiv" id="attributeDiv">
                 <div class="attributeButtonDiv" id="attributeButtonDiv" onclick="closeCurrentPokemon(2, event)">
-                        <button onclick="getAttributeData(1)" class="activeAttributeButton" id="attributeButton">main</button>
-                        <button onclick="getAttributeData(2)" class="attributeButton" id="attributeButton">stats</button>
-                        <button onclick="getAttributeData(3)" class="attributeButton" id="attributeButton">evo chain</button>
+                        <button onclick="getAttributeData(1)" class="activeAttributeButton attributeButton" id="attributeButton1">main</button>
+                        <button onclick="getAttributeData(2)" class="attributeButton" id="attributeButton2">stats</button>
+                        <button onclick="getAttributeData(3)" class="attributeButton" id="attributeButton3">evo chain</button>
                 </div>
                 <div class="mainStats" id="mainStats">
                 </div>

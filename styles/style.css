@@ -10,6 +10,7 @@ body {
     height: 100vh;
     width: 100vw;
     overflow: auto;
+    scrollbar-color: rgb(179, 20, 19) rgb(8, 33, 41);
 }
 
 /* prevent scrollbar shift */
@@ -55,22 +56,6 @@ html {
     100% {
         transform: rotate(360deg);
     }
-}
-
-.mainDiv {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    min-height: 100vh;
-    position: relative;
-    overflow-x: hidden;
-    background-color: rgb(5, 23, 30);
-}
-
-.mainContent {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 /* header */
@@ -130,7 +115,7 @@ header {
     color: white
 }
 
-.aktiveLink {
+.activeLink {
     text-decoration: none;
     font-size: 20px;
     font-weight: 600;
@@ -138,7 +123,7 @@ header {
 }
 
 .linkStyle:hover,
-.aktiveLink {
+.activeLink {
     transition: 0.3s;
     text-decoration: underline;
     text-decoration-thickness: 3px;
@@ -147,6 +132,30 @@ header {
 }
 
 /* content */
+.mainDiv {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-color: rgb(5, 23, 30);
+}
+
+.mainContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mainContentSearch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    gap: 20px;
+}
+
 .content {
     display: flex;
     flex-wrap: wrap;
@@ -310,15 +319,7 @@ header {
 }
 
 .activeAttributeButton {
-    cursor: pointer;
-    background-color: rgb(5, 23, 30);
-    width: 33%;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
+    filter: drop-shadow(0px 0px 2px white);
 }
 
 .attributeButton {
@@ -338,7 +339,7 @@ header {
     overflow-y: hidden;
 }
 
-/* The Close Button */
+/* the close button */
 .close {
     position: absolute;
     right: 10px;
@@ -433,13 +434,28 @@ header {
 
 .searchInput {
     color: black;
+    padding: 10px 10px;
+    font-size: 16px;
+    width: 300px;
 }
 
 .searchButton {
-    color: black;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    background-color: rgb(8, 33, 41);
+    border-radius: 10px;
 }
 
-/* Footer */
+.searchButton:hover {
+    cursor: pointer;
+    filter: drop-shadow(0px 0px 2px white);
+}
+
+/* footer */
 footer {
     margin-top: auto;
     height: 150px;
@@ -451,22 +467,6 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.footerLinks {
-    display: flex;
-    gap: 16px;
-    color: white;
-}
-
-.footerLinks a {
-    color: white;
-    text-decoration: none;
-}
-
-.footerLinks a:hover {
-    text-decoration: underline;
-    font-weight: bold;
 }
 
 .footerIcons {
@@ -483,7 +483,7 @@ footer {
     filter: drop-shadow(0px 0px 2px white);
 }
 
-/* Responsive Menu */
+/* responsive menu */
 .respMenuClosed {
     transform: translateX(100%);
 }
@@ -504,10 +504,9 @@ footer {
 }
 
 @media (max-width: 950px) {
-
-    ::-webkit-scrollbar {
-        width: 0;
-        background-color: transparent;
+    body {
+        scrollbar-width: none;
+        scrollbar-color: transparent;
     }
 
     .spinner {
@@ -520,6 +519,7 @@ footer {
         position: absolute;
         top: 100px;
         right: 0;
+        padding-top: 10px;
         background-color: rgb(8, 33, 41);
         border-top: 4px solid white;
         border-left: 4px solid white;
@@ -527,7 +527,7 @@ footer {
         border-top-left-radius: 20px;
         border-bottom-left-radius: 20px;
         width: 200px;
-        height: 250px;
+        height: 200px;
         transition: all 250ms ease-in-out;
     }
 
@@ -556,6 +556,11 @@ footer {
         padding-left: 8px;
     }
 
+    .activeLink {
+        padding-bottom: 16px;
+        padding-left: 8px;
+    }
+
     .linkStyle:first-child {
         padding-top: 16px;
     }
@@ -571,5 +576,72 @@ footer {
 
     .contentImg {
         width: 280px;
+    }
+}
+
+@media (max-width: 560px) {
+    .resp {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .footerContent {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 20px 0;
+    }
+
+    .currentPokeCard {
+        width: 300px;
+    }
+
+    .mainStats {
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+        flex-direction: row;
+        align-content: center;
+    }
+
+    .mainAttribute {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 125px;
+    }
+
+    .mainResults {
+        width: 120px;
+        word-break: break-word;
+    }
+
+    .attribute {
+        text-align: center;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .outerScale {
+        transform: scale(0.9, 1);
+    }
+
+    .chainContentImg {
+        height: 150px;
+        width: auto;
+    }
+
+    .chainContentArrow {
+        height: 70px;
+        width: 40px;
+    }
+
+    .arrowDiv {
+        display: flex;
+        height: 150px;
+        align-items: center;
     }
 }

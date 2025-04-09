@@ -78,10 +78,10 @@ function establishCurrentPokeType(allPokemon, index, data) {
 }
 
 function getAttributeData(folder) {
+    switchButton(folder);
     if (folder == 1) {
         showSpinner();
         loadMainAttributesData();
-        
     } else if (folder == 2) {
         showSpinner();
         loadStatsAttributesData()
@@ -125,7 +125,7 @@ function showSearchedPokemon(warningRef) {
     let searchProperty = (inputElement.toLowerCase());
     matches = findPokemonIndex(searchProperty);
     if (matches.length == 0) {
-        warningRef.innerHTML = 'Leider wurde kein passendes Pokemon gefunden...';
+        warningRef.innerHTML = 'No pokemon found...';
     }
     renderFoundPokemon(matches);
 }
@@ -145,15 +145,23 @@ function switchPokemon(operator, index, event) {
         if (index == 0) {
             index = 1024;
         } else {
-        index--;
+            index--;
         } openCurrentPokemon(index, event);
     } else if (operator == 2) {
         if (index == 1024) {
             index = 0;
         } else {
-        index++;
+            index++;
         } openCurrentPokemon(index, event);
     }}
+
+function switchButton(folder) {
+    let activeButtonArray = document.getElementsByClassName("attributeButton");
+    for (let index = 0; index < activeButtonArray.length; index++) {
+        activeButtonArray[index].classList.remove("activeAttributeButton"); 
+    }
+    document.getElementById("attributeButton" + folder).classList.add("activeAttributeButton");
+}
 
 
 
