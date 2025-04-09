@@ -113,7 +113,7 @@ async function establishSecondEvolutionChainData(evolutionChain) {
     if (evolutionChain.chain.evolves_to.length != 0) {
         document.getElementById("mainStats").innerHTML += renderArrow();
         if (evolutionChain.chain.evolves_to.length == 1) {
-            let attributeData = await loadAttributesData(allPokemon[findPokemonIndex(evolutionChain.chain.evolves_to[0].species.name) - 1].url);
+            let attributeData = await loadAttributesData(allPokemon[findPokemonIndex(evolutionChain.chain.evolves_to[0].species.name)[0] - 1].url);
             document.getElementById("mainStats").innerHTML += renderEvolutionChainData(2);
             document.getElementById("evolutionChainImg" + 2).src = attributeData.sprites.other.home.front_default;
             document.getElementById("evolutionChainDiv" + 2).innerHTML += attributeData.name;
@@ -127,7 +127,7 @@ async function establishSecondEvolutionChainData(evolutionChain) {
 async function establishThirdEvolutionChainData(evolutionChain) {
     if (evolutionChain.chain.evolves_to[0].evolves_to.length != 0) {
         document.getElementById("mainStats").innerHTML += renderArrow();
-        let attributeData = await loadAttributesData(allPokemon[findPokemonIndex(evolutionChain.chain.evolves_to[0].evolves_to[0].species.name) - 1].url);
+        let attributeData = await loadAttributesData(allPokemon[findPokemonIndex(evolutionChain.chain.evolves_to[0].evolves_to[0].species.name)[0] - 1].url);
         document.getElementById("mainStats").innerHTML += renderEvolutionChainData(3);
         document.getElementById("evolutionChainImg" + 3).src = attributeData.sprites.other.home.front_default;
         document.getElementById("evolutionChainDiv" + 3).innerHTML += attributeData.name;
