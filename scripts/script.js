@@ -14,8 +14,7 @@ function getPromise() {
                 reject(console.error("Daten konnten nicht abgerufen werden"));
                 hideSpinner();
             } else {
-                // resolve(console.log("Daten konnten abgerufen werden"));
-                hideSpinner();
+                resolve(hideSpinner());
             }
         }, 300);
     });
@@ -109,22 +108,25 @@ function searchPokemon() {
     let searchCharacterLength = document.getElementById("pokemonSearch").value.length;
     let warningRef = document.getElementById('warning');
     warningRef.innerHTML = "";
-    if (searchCharacterLength.length < 3 || searchCharacterLength.length > 20) {
-        warningRef.innerHTML = 'Bitte eine Zahl zwischen 3 und 20 eingeben';
+    if (searchCharacterLength < 3 || searchCharacterLength > 20) {
+        warningRef.innerHTML = 'Bitte eine Zahl zwischen 3 und 20 eingeben!';
         return;
     } else {
         showSpinner();
-        showSearchedPokemon();
+        showSearchedPokemon(warningRef);
         hideSpinner();
     }
 }
 
-function showSearchedPokemon() {
+function showSearchedPokemon(warningRef) {
     document.getElementById("content").innerHTML = "";
     let matches = "";
     let inputElement = document.getElementById("pokemonSearch").value;
     let searchProperty = (inputElement.toLowerCase());
     matches = findPokemonIndex(searchProperty);
+    if (matches.length == 0) {
+        warningRef.innerHTML = 'Leider wurde kein passendes Pokemon gefunden...';
+    }
     renderFoundPokemon(matches);
 }
 
@@ -137,6 +139,21 @@ function hideSpinner() {
     document.getElementById("spinnerDiv").style.display = "none";
     document.getElementById("spinner").style.display = "none";
 }
+
+function switchPokemon(operator, index, event) {
+    if (operator == 1) {
+        if (index == 0) {
+            index = 1024;
+        } else {
+        index--;
+        } openCurrentPokemon(index, event);
+    } else if (operator == 2) {
+        if (index == 1024) {
+            index = 0;
+        } else {
+        index++;
+        } openCurrentPokemon(index, event);
+    }}
 
 
 

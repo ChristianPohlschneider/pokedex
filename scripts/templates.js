@@ -39,8 +39,8 @@ function renderCurrentPokemon(index) {
                 <div class="mainStats" id="mainStats">
                 </div>
                     <div class="switchPokemon" id="switchPokemon">
-                        <img class="switchImgLeft" onclick="switchPokemon(1)" src="./assets/img/arrow_evolution.png" alt="arrow left">
-                        <img class="switchImgRight" onclick="switchPokemon(2)" src="./assets/img/arrow_evolution.png" alt="arrow right">
+                        <img class="switchImgLeft" onclick="switchPokemon(1, ${index}, event)" src="./assets/img/arrow_evolution.png" alt="arrow left">
+                        <img class="switchImgRight" onclick="switchPokemon(2, ${index}, event)" src="./assets/img/arrow_evolution.png" alt="arrow right">
                     </div>
             </div>
     </div>
