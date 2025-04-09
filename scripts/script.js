@@ -109,7 +109,7 @@ function searchPokemon() {
     let warningRef = document.getElementById('warning');
     warningRef.innerHTML = "";
     if (searchCharacterLength < 3 || searchCharacterLength > 20) {
-        warningRef.innerHTML = 'Bitte eine Zahl zwischen 3 und 20 eingeben!';
+        warningRef.innerHTML = 'Please enter at least 3 letters!';
         return;
     } else {
         showSpinner();
