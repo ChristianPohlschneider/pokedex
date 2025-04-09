@@ -237,6 +237,7 @@ h2:hover {
     justify-content: center;
     position: fixed;
     z-index: 1;
+    filter: drop-shadow(0px 0px 4px white);
 }
 
 .currentPokeCard {
@@ -257,6 +258,36 @@ h2:hover {
 
 .currentContentImg {
     width: 250px;
+}
+
+.switchPokemon {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+
+.switchImgLeft {
+    cursor: pointer;
+    height: 50px;
+    width: 80px;
+    transform: rotate(180deg);
+}
+
+.switchImgRight {
+    cursor: pointer;
+    height: 50px;
+    width: 80px;
+}
+
+.switchImgLeft:hover,
+.switchImgRight:hover,
+.attributeButton:hover,
+.activeAttributeButton:hover,
+.pokeCard:hover {
+    filter: drop-shadow(0px 0px 2px white);
 }
 
 .attributeDiv {
