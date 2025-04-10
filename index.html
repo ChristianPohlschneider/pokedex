@@ -30,7 +30,9 @@
                 </a>
                 <div class="navLinks linksDesktop">
                     <a class="activeLink" href="index.html">Start</a>
-                    <a class="linkStyle" href="search.html">Find Pokemon</a>
+                    <input class="searchInput" type="search" id="pokemonSearch" onkeyup="searchPokemon()" placeholder="PLease type in three letters"
+                    name="q" minlength=3 maxlength="20" required/>
+                    
                 </div>
                 <img onclick="toggleMenu('respMenu')" class="burgerDesktop burgerMobile"
                     src="./assets/img/burger_icon2.png" alt="Burger icon" />
@@ -43,6 +45,7 @@
         </div>
 
         <main class="mainContent maxWidth">
+            <div id="warning"></div>
             <div class="currentContent" id="currentContent"></div>
             <div class="content" id="content"></div>
             <button class="moreButton" id="moreButton" onclick="morePokemon()">Please show more Pokemon...!</button>

@@ -19,7 +19,6 @@ async function loadFromAPI() {
 
 async function getAllPokemon() {
     if (allPokemon == "") {
-        showSpinner();
         let response = await loadData(TOTAL_PATH);
         for (let index = 0; index < 1025; index++) {
             allPokemon.push(
@@ -29,7 +28,7 @@ async function getAllPokemon() {
                     url: response[index].url
                 }
             )}
-        hideSpinner();
+            // hideSpinner();
     }}
 
 async function getAttributes(Array, index) {

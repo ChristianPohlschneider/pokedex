@@ -6,6 +6,8 @@ let limit = 20;
 let endValue = 0;
 
 function getPromise() {
+    // document.getElementById("content").innerHTML = "";
+    document.getElementById("moreButton").style.display = "flex";
     showSpinner();
     loadFromAPI();
     return new Promise((resolve, reject) => {
@@ -15,8 +17,7 @@ function getPromise() {
                 hideSpinner();
             } else {
                 resolve(hideSpinner());
-            }
-        }, 300);
+            }}, 800);
     });
 }
 
@@ -106,19 +107,22 @@ function findPokemonIndex(pokemonName) {
 
 function searchPokemon() {
     let searchCharacterLength = document.getElementById("pokemonSearch").value.length;
-    let warningRef = document.getElementById('warning');
-    warningRef.innerHTML = "";
-    if (searchCharacterLength < 3 || searchCharacterLength > 20) {
-        warningRef.innerHTML = 'Please enter at least 3 letters!';
+    document.getElementById('warning').innerHTML = "";
+    if (document.getElementById("pokemonSearch").value == 0) {
+        initArray = [];
+        document.getElementById("content").innerHTML = "";
+        getPromise();
+    } else if (searchCharacterLength < 3 || searchCharacterLength > 20) {
+        document.getElementById('warning').innerHTML = 'Min 3 letters!';
         return;
     } else {
         showSpinner();
-        showSearchedPokemon(warningRef);
+        showSearchedPokemon(document.getElementById('warning'));
         hideSpinner();
-    }
-}
+    }}
 
 function showSearchedPokemon(warningRef) {
+    document.getElementById("moreButton").style.display = "none";
     document.getElementById("content").innerHTML = "";
     let matches = "";
     let inputElement = document.getElementById("pokemonSearch").value;
