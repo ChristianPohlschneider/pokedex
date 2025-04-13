@@ -1,20 +1,20 @@
-function renderPokeCard(initArray, index) {
+function renderPokeCard(displayedPokemon, index) {
     return `
-    <div onclick="openCurrentPokemon(${Math.abs(Number(initArray[index].id - 1))}, event)" class="pokeCard">
-    <p class="pokeCardID">#${Number(initArray[index].id)}</p>
+    <div onclick="openCurrentPokemon(${Math.abs(Number(displayedPokemon[index].id - 1))}, event)" class="pokeCard">
+    <p class="pokeCardID">#${Number(displayedPokemon[index].id)}</p>
         <div class="pokeCardHeader" id="pokeCardHeader">
             
-            <p>${initArray[index].name}</p>
+            <p>${displayedPokemon[index].name}</p>
         </div>
-        <img class="contentImg" id="contentImg${initArray[index].id}" src="" alt="pokemon">
-        <div class="pokemonType" id="pokemonType${initArray[index].id}"></div>
+        <img class="contentImg" id="contentImg${displayedPokemon[index].id}" src="" alt="pokemon">
+        <div class="pokemonType" id="pokemonType${displayedPokemon[index].id}"></div>
     </div>
     `;
 }
 
-function renderSpecificPokeType(initArray, index, typeIndex) {
+function renderSpecificPokeType(displayedPokemon, index, typeIndex) {
     return `
-    <img class="pokeTypeImg" id="typeImg${initArray[index].id + "#" + typeIndex}" src="" alt="type">
+    <img class="pokeTypeImg" id="typeImg${displayedPokemon[index].id + "#" + typeIndex}" src="" alt="type">
     `;
 }
 
@@ -22,8 +22,8 @@ function renderCurrentPokemon(index) {
     return `
     <div class="currentPokeCard" onclick="closeCurrentPokemon(0, event)">
         <div class="currentPokeCardHeader" id="pokeCardHeader">
-            <p class="pokeID"  id="pokeID">#${Number(allPokemon[index].id)}</p>
-            <p class="pokemonName">${allPokemon[index].name}</p>
+            <p class="pokeID"  id="pokeID">#${Number(displayedPokemon[index].id)}</p>
+            <p class="pokemonName">${displayedPokemon[index].name}</p>
             <span class="close" onclick="closeCurrentPokemon(1, event)">&times;</span>
         </div>
         <div class="currentContentImgDiv" id="currentContentImgDiv">
@@ -47,9 +47,9 @@ function renderCurrentPokemon(index) {
     `;
 }
 
-function renderCurrentPokeType(allPokemon, index, typeIndex) {
+function renderCurrentPokeType(displayedPokemon, index, typeIndex) {
     return `
-    <img class="pokeTypeImg" id="typeImg${allPokemon[index].id + "_" + typeIndex}" src="" alt="type">
+    <img class="pokeTypeImg" id="typeImg${displayedPokemon[index].id + "_" + typeIndex}" src="" alt="type">
     `;
 }
 
