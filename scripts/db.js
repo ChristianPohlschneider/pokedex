@@ -1,35 +1,55 @@
 const BASE_URL = "https://pokeapi.co/api/v2/";
 const Evolution_Chain = "pokemon-species/";
+let allPokemon = [];
 let attributesArray = [];
+let pokemonIndex = 0;
 
 async function loadFromAPI() {
     await getDisplayedPokemon();
     // let response = await loadData(INIT_PATH);
-    for (let index = 0; index < displayedPokemon.length; index++) {
-    //     initArray.push(
-    //         {
-    //             id: 0,
-    //             name: response[index].name,
-    //             url: response[index].url
-    //         })
+    for (let index = offset; index < displayedPokemon.length; index++) {
+        //     initArray.push(
+        //         {
+        //             id: 0,
+        //             name: response[index].name,
+        //             url: response[index].url
+        //         })
         let attributes = await getAttributes(displayedPokemon, index);
         // displayedPokemon[index].id = attributes.id;
         renderPokeCards(displayedPokemon, index, attributes);
-    }}
+    }
+}
+
+async function getAllPokemon() {
+    let response = await loadData(TOTAL_PATH);
+    for (let index = 0; index < 1025; index++) {
+        allPokemon.push(
+            {
+                id: index + 1,
+                name: response[index].name,
+                url: response[index].url
+            }
+        );
+    }
+}
 
 async function getDisplayedPokemon() {
-    if (displayedPokemon == "") {
-        let response = await loadData("pokemon?limit=" + limit + "&offset=" + offset);
-        for (let index = 0; index < limit; index++) {
-            displayedPokemon.push(
-                {
-                    id: index + 1,
-                    name: response[index].name,
-                    url: response[index].url
-                }
-            )}
-            // hideSpinner();
-    }}
+    if (offset == 0) {
+        pokemonIndex = 0;
+    } else if (offset != 0) { pokemonIndex = offset }
+    let response = await loadData("pokemon?limit=" + limit + "&offset=" + offset);
+    for (let index = 0; index < limit; index++) {
+        displayedPokemon.push(
+            {
+                id: pokemonIndex + 1,
+                name: response[index].name,
+                url: response[index].url
+            }
+        );
+        pokemonIndex++;
+    }
+    // hideSpinner();
+}
 
 async function getAttributes(Array, index) {
     let attributeData = await loadAttributesData(Array[index].url);
@@ -98,7 +118,7 @@ async function loadEvolutionChainData() {
 
 async function establishFirstEvolutionChainData(evolutionChain) {
     document.getElementById("mainStats").innerHTML = renderEvolutionChainData(1);
-    let attributeData = await loadAttributesData(displayedPokemon[findPokemonIndex(evolutionChain.chain.species.name)[0] - 1].url);
+    let attributeData = await loadAttributesData(allPokemon[findPokemonIndex(evolutionChain.chain.species.name)[0] - 1].url);
     document.getElementById("evolutionChainImg" + 1).src = attributeData.sprites.other.home.front_default;
     document.getElementById("evolutionChainDiv" + 1).innerHTML += attributeData.name;
     establishSecondEvolutionChainData(evolutionChain);
@@ -108,7 +128,7 @@ async function establishSecondEvolutionChainData(evolutionChain) {
     if (evolutionChain.chain.evolves_to.length != 0) {
         document.getElementById("mainStats").innerHTML += renderArrow();
         if (evolutionChain.chain.evolves_to.length == 1) {
-            let attributeData = await loadAttributesData(displayedPokemon[findPokemonIndex(evolutionChain.chain.evolves_to[0].species.name)[0] - 1].url);
+            let attributeData = await loadAttributesData(allPokemon[findPokemonIndex(evolutionChain.chain.evolves_to[0].species.name)[0] - 1].url);
             document.getElementById("mainStats").innerHTML += renderEvolutionChainData(2);
             document.getElementById("evolutionChainImg" + 2).src = attributeData.sprites.other.home.front_default;
             document.getElementById("evolutionChainDiv" + 2).innerHTML += attributeData.name;
@@ -122,7 +142,7 @@ async function establishSecondEvolutionChainData(evolutionChain) {
 async function establishThirdEvolutionChainData(evolutionChain) {
     if (evolutionChain.chain.evolves_to[0].evolves_to.length != 0) {
         document.getElementById("mainStats").innerHTML += renderArrow();
-        let attributeData = await loadAttributesData(displayedPokemon[findPokemonIndex(evolutionChain.chain.evolves_to[0].evolves_to[0].species.name)[0] - 1].url);
+        let attributeData = await loadAttributesData(allPokemon[findPokemonIndex(evolutionChain.chain.evolves_to[0].evolves_to[0].species.name)[0] - 1].url);
         document.getElementById("mainStats").innerHTML += renderEvolutionChainData(3);
         document.getElementById("evolutionChainImg" + 3).src = attributeData.sprites.other.home.front_default;
         document.getElementById("evolutionChainDiv" + 3).innerHTML += attributeData.name;
@@ -131,7 +151,7 @@ async function establishThirdEvolutionChainData(evolutionChain) {
 
 async function establishMultipleEvolutionChainData(evolutionChain) {
     for (let multipleIndex = 0; multipleIndex < evolutionChain.chain.evolves_to.length; multipleIndex++) {
-        let attributeData = await loadAttributesData(displayedPokemon[findPokemonIndex(evolutionChain.chain.evolves_to[multipleIndex].species.name) - 1].url);
+        let attributeData = await loadAttributesData(allPokemon[findPokemonIndex(evolutionChain.chain.evolves_to[multipleIndex].species.name) - 1].url);
         document.getElementById("mainStats").innerHTML += renderEvolutionChainData(4 + multipleIndex);
         document.getElementById("evolutionChainImg" + Number(4 + multipleIndex)).src = attributeData.sprites.other.home.front_default;
         document.getElementById("evolutionChainDiv" + Number(4 + multipleIndex)).innerHTML += attributeData.name;

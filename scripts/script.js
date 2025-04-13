@@ -1,6 +1,7 @@
 let INIT_PATH = "pokemon?limit=20&offset=0";
 let TOTAL_PATH = "pokemon?limit=100000&offset=0";
 let displayedPokemon = [];
+
 // let initArray = [];
 let limit = 20;
 let offset = 0;
@@ -95,11 +96,11 @@ function getAttributeData(folder) {
 
 function findPokemonIndex(pokemonName) {
     let searchArray = [];
-    for (let findIndex = 0; findIndex < displayedPokemon.length; findIndex++) {
-        let testName = displayedPokemon[findIndex].name;
+    for (let findIndex = 0; findIndex < allPokemon.length; findIndex++) {
+        let testName = allPokemon[findIndex].name;
         let pattern = new RegExp(pokemonName);
         if (pattern.test(testName) === true) {
-            searchArray.push(displayedPokemon[findIndex].id);
+            searchArray.push(allPokemon[findIndex].id);
         }
     }
     return searchArray;
@@ -147,12 +148,12 @@ function hideSpinner() {
 function switchPokemon(operator, index, event) {
     if (operator == 1) {
         if (index == 0) {
-            index = 1024;
+            index = displayedPokemon.length - 1;
         } else {
             index--;
         } openCurrentPokemon(index, event);
     } else if (operator == 2) {
-        if (index == 1024) {
+        if (index == displayedPokemon.length - 1) {
             index = 0;
         } else {
             index++;
