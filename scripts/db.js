@@ -6,16 +6,19 @@ let pokemonIndex = 0;
 
 async function loadFromAPI() {
     await getDisplayedPokemon();
-    // let response = await loadData(INIT_PATH);
-    for (let index = offset; index < displayedPokemon.length; index++) {
-        //     initArray.push(
-        //         {
-        //             id: 0,
-        //             name: response[index].name,
-        //             url: response[index].url
-        //         })
+    renderFromDisplayedPokemon();
+}
+
+async function renderFromDisplayedPokemon() {
+    for (let index = 0; index < displayedPokemon.length; index++) {
         let attributes = await getAttributes(displayedPokemon, index);
-        // displayedPokemon[index].id = attributes.id;
+        renderPokeCards(displayedPokemon, index, attributes);
+    }
+}
+
+async function renderUndisplayedPokemon() {
+    for (let index = offset; index < displayedPokemon.length; index++) {
+        let attributes = await getAttributes(displayedPokemon, index);
         renderPokeCards(displayedPokemon, index, attributes);
     }
 }
@@ -164,8 +167,13 @@ async function establishMultipleEvolutionChainData(evolutionChain) {
 
 async function renderFoundPokemon(matches) {
     for (let matchIndex = 0; matchIndex < matches.length; matchIndex++) {
-        let attributes = await getAttributes(displayedPokemon, matches[matchIndex] - 1);
-        matches[matchIndex] = matches[matchIndex] - 1;
-        renderPokeCards(displayedPokemon, matches[matchIndex], attributes);
+        if (matches[matchIndex] > limit + offset && document.getElementById("content").innerHTML == "") {
+            document.getElementById('warning').innerHTML = 'No pokemon found...';
+            return
+        } else if (matches[matchIndex] <= limit + offset) {
+            let attributes = await getAttributes(displayedPokemon, matches[matchIndex] - 1);
+            matches[matchIndex] = matches[matchIndex] - 1;
+            renderPokeCards(displayedPokemon, matches[matchIndex], attributes);
+        }
     }
 }

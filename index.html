@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="./styles/typeColors.css">
 </head>
 
-<body onload="getPromise(), getAllPokemon()">
+<body onload="getPromise(), getAllPokemon(), setEventListener()">
 
     <div class="spinnerDiv" id="spinnerDiv">
         <div class="spinner" id="spinner"></div>
@@ -30,7 +30,7 @@
                 </a>
                 <div class="navLinks linksDesktop">
                     <a class="activeLink" href="index.html">Start</a>
-                    <input class="searchInput" type="search" id="pokemonSearch" onkeyup="searchPokemon()" placeholder="PLease type in three letters"
+                    <input class="searchInput" type="search" id="pokemonSearch" onkeyup="searchPokemon()" onsubmit="searchPokemon()" placeholder="PLease type in three letters"
                     name="q" minlength=3 maxlength="20" required/>
                     
                 </div>
