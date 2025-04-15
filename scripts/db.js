@@ -48,11 +48,8 @@ async function getDisplayedPokemon() {
                 name: response[index].name,
                 url: response[index].url
             }
-        );
-        pokemonIndex++;
-    }
-    // hideSpinner();
-}
+        ); pokemonIndex++;
+    }}
 
 async function getAttributes(Array, index) {
     let attributeData = await loadAttributesData(Array[index].url);
@@ -139,8 +136,7 @@ async function establishSecondEvolutionChainData(evolutionChain) {
         } else if (evolutionChain.chain.evolves_to.length > 1) {
             establishMultipleEvolutionChainData(evolutionChain);
         }
-    }
-}
+    }}
 
 async function establishThirdEvolutionChainData(evolutionChain) {
     if (evolutionChain.chain.evolves_to[0].evolves_to.length != 0) {
@@ -165,6 +161,16 @@ async function establishMultipleEvolutionChainData(evolutionChain) {
     }
 }
 
+async function morePokemon() {
+    showSpinner();
+    document.getElementById("moreButton").disabled = true;
+    offset = offset + limit;
+    await getDisplayedPokemon();
+    renderUndisplayedPokemon();
+    document.getElementById("moreButton").disabled = false;
+    getPromiseReturn();
+}
+
 async function renderFoundPokemon(matches) {
     for (let matchIndex = 0; matchIndex < matches.length; matchIndex++) {
         if (matches[matchIndex] > limit + offset && document.getElementById("content").innerHTML == "") {
@@ -176,4 +182,13 @@ async function renderFoundPokemon(matches) {
             renderPokeCards(displayedPokemon, matches[matchIndex], attributes);
         }
     }
+}
+
+async function reloadAfterSearch() {
+    showSpinner();
+    document.getElementById('content').innerHTML = "";
+    document.getElementById('warning').innerHTML = "";
+    renderFromDisplayedPokemon();
+    document.getElementById("moreButton").style.display = "flex";
+    getPromiseReturn();
 }
