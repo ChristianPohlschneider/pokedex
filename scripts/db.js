@@ -174,6 +174,7 @@ async function morePokemon() {
 async function renderFoundPokemon(matches) {
     for (let matchIndex = 0; matchIndex < matches.length; matchIndex++) {
         if (matches[matchIndex] > limit + offset && document.getElementById("content").innerHTML == "") {
+            document.getElementById('warning').style.flex = "1";
             document.getElementById('warning').innerHTML = 'No pokemon found...';
             return
         } else if (matches[matchIndex] <= limit + offset) {

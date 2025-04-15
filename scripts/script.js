@@ -139,6 +139,7 @@ function showSearchedPokemon(warningRef, id) {
     let searchProperty = (inputElement.toLowerCase());
     matches = findPokemonIndex(searchProperty);
     if (matches.length == 0) {
+        document.getElementById('warning').style.flex = "1";
         warningRef.innerHTML = 'No pokemon found...';
     }
     renderFoundPokemon(matches);
