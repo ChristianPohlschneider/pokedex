@@ -14,13 +14,6 @@ function setEventListener() {
     });
 }
 
-async function getPromise() {
-    document.getElementById("moreButton").style.display = "flex";
-    showSpinner();
-    await loadFromAPI();
-    await getPromiseReturn();
-}
-
 function getPromiseReturn() {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -80,21 +73,6 @@ function establishCurrentPokeType(displayedPokemon, index, data) {
         document.getElementById("typeImg" + displayedPokemon[index].id + "_" + typeIndex).src = "./assets/icons/" + data.types[typeIndex].type.name + ".png";
     }
     loadMainAttributesData()
-}
-
-function getAttributeData(folder) {
-    switchButton(folder);
-    if (folder == 1) {
-        showSpinner();
-        loadMainAttributesData();
-    } else if (folder == 2) {
-        showSpinner();
-        loadStatsAttributesData()
-    } else {
-        showSpinner();
-        loadEvolutionChainData()
-    }
-    hideSpinner();
 }
 
 function findPokemonIndex(pokemonName) {

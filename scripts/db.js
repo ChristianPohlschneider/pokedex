@@ -4,6 +4,13 @@ let allPokemon = [];
 let attributesArray = [];
 let pokemonIndex = 0;
 
+async function getPromise() {
+    document.getElementById("moreButton").style.display = "flex";
+    showSpinner();
+    await loadFromAPI();
+    await getPromiseReturn();
+}
+
 async function loadFromAPI() {
     await getDisplayedPokemon();
     renderFromDisplayedPokemon();
@@ -85,6 +92,21 @@ async function loadAttributesData(url = "") {
 async function loadCurrentPokemonData(displayedPokemon, index) {
     let data = await getAttributes(displayedPokemon, index);
     establishCurrentPokeType(displayedPokemon, index, data);
+}
+
+async function getAttributeData(folder) {
+    switchButton(folder);
+    if (folder == 1) {
+        showSpinner();
+        await loadMainAttributesData();
+    } else if (folder == 2) {
+        showSpinner();
+        await loadStatsAttributesData()
+    } else {
+        showSpinner();
+        await loadEvolutionChainData()
+    }
+    hideSpinner();
 }
 
 async function loadMainAttributesData() {

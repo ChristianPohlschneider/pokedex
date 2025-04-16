@@ -37,6 +37,8 @@ function renderCurrentPokemon(index) {
                         <button onclick="getAttributeData(3)" class="attributeButton" id="attributeButton3">evo chain</button>
                 </div>
                 <div class="mainStats" id="mainStats">
+                <div class="currentStats" id="currentStats">
+                <div class="evoChainStats" id="evoChainStats">
                 </div>
                     <div class="switchPokemon" id="switchPokemon">
                         <img class="switchImgLeft" onclick="switchPokemon(1, ${index}, event)" src="./assets/img/arrow_evolution.png" alt="arrow left">
