@@ -14,11 +14,11 @@ function setEventListener() {
     });
 }
 
-function getPromise() {
+async function getPromise() {
     document.getElementById("moreButton").style.display = "flex";
     showSpinner();
-    loadFromAPI();
-    getPromiseReturn();
+    await loadFromAPI();
+    await getPromiseReturn();
 }
 
 function getPromiseReturn() {
