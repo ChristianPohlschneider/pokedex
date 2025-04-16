@@ -36,10 +36,9 @@ function renderCurrentPokemon(index) {
                         <button onclick="getAttributeData(2)" class="attributeButton" id="attributeButton2">stats</button>
                         <button onclick="getAttributeData(3)" class="attributeButton" id="attributeButton3">evo chain</button>
                 </div>
-                <div class="mainStats" id="mainStats">
-                <div class="currentStats" id="currentStats">
-                <div class="evoChainStats" id="evoChainStats">
-                </div>
+                <div class="mainStats" id="mainStats"></div>
+                <div class="currentStats" id="currentStats"></div>
+                <div class="evoChainStats" id="evoChainStats"></div>
                     <div class="switchPokemon" id="switchPokemon">
                         <img class="switchImgLeft" onclick="switchPokemon(1, ${index}, event)" src="./assets/img/arrow_evolution.png" alt="arrow left">
                         <img class="switchImgRight" onclick="switchPokemon(2, ${index}, event)" src="./assets/img/arrow_evolution.png" alt="arrow right">
@@ -81,7 +80,7 @@ function renderStatsAttributesDataDiv() {
 function renderStatsAttributesData(data, statIndex) {
     return `
     <div class="attribute"><p class="attributeName">${data.stats[statIndex].stat.name}</p>
-        <div class="outerScale">
+        <div id="outerscale" class="outerScale">
             <div class="innerScale" id="innerScale${statIndex}" style="width: ${Math.abs(Number(data.stats[statIndex].base_stat) * 3)}px"></div>
         </div>
     </div>

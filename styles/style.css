@@ -279,10 +279,12 @@ header {
 
 .switchPokemon {
     display: flex;
+    width: 100%;
     align-items: center;
     justify-content: space-between;
     padding-left: 20px;
     padding-right: 20px;
+    padding-top: 10px;
     padding-bottom: 20px;
 }
 
@@ -308,7 +310,9 @@ header {
 }
 
 .attributeDiv {
+    display: flex;
     width: 100%;
+    flex-direction: column;
 }
 
 .attributeButtonDiv {
@@ -358,20 +362,30 @@ header {
 
 .mainStats {
     display: flex;
-    min-height: 300px;
-    padding: 30px;
-    align-items: flex-start;
+    height: 300px;
+    align-items: center;
     justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
 .currentStats {
-
+    display: flex;
+    height: 0px;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
 }
 
 .evoChainStats {
-
+    display: flex;
+    height: 0px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    overflow-x: auto;
 }
 
 .mainAttribute {
@@ -392,6 +406,7 @@ header {
     flex-direction: column;
     gap: 16px;
     width: 100%;
+    align-items: center;
 }
 
 .attribute {
@@ -404,6 +419,7 @@ header {
 }
 
 .innerScale {
+    display: flex;
     height: 18px;
     background-color: rgb(179, 20, 19);
     border-radius: 20px;
@@ -628,12 +644,54 @@ footer {
         width: 300px;
     }
 
+    .attributeDiv {
+        width: 100%;
+    }
+
     .mainStats {
         display: flex;
-        justify-content: center;
-        padding: 10px;
+        padding: 0px;
         flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .currentStats {
+        display: flex;
+        justify-content: center;
+        padding: 0px;
+        flex-direction: column;
         align-content: center;
+    }
+
+    .statsAttribute {
+        gap: 0px;
+    }
+
+    .evoChainStats {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        overflow-y: scroll;
+        scrollbar-gutter: stable both-edges;
+    }
+
+    .evolutionChainDiv {
+        margin-bottom: 8px;
+        gap: 8px;
+    }
+
+    .chainContentImg {
+        height: 150px;
+        width: auto;
+        margin-top: 8px;
+    }
+
+    .chainContentArrow {
+        height: 70px;
+        width: 40px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        transform: rotate(90deg);
     }
 
     .mainAttribute {
@@ -641,11 +699,13 @@ footer {
         flex-direction: column;
         gap: 20px;
         width: 125px;
+        padding-top: 60px;
     }
 
     .mainResults {
         width: 120px;
         word-break: break-word;
+        padding-top: 60px;
     }
 
     .attribute {
@@ -653,11 +713,15 @@ footer {
         display: flex;
         align-items: center;
         flex-direction: column;
-        gap: 10px;
     }
 
     .outerScale {
-        transform: scale(0.9, 1);
+        transform: scale(0.8, 1);
+        margin: 5px 0;
+    }
+
+    .innerScale {
+        height: 8px;
     }
 
     .chainContentImg {
